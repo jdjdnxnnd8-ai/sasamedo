@@ -7,57 +7,75 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
+        /* ضبط الصورة لتكون في الخلفية تماماً غصب عن المتصفح */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 100vh; padding: 20px; text-align: center; overflow-x: hidden; position: relative;
+            color: #fff; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            min-height: 100vh; 
+            padding: 20px; 
+            text-align: center; 
+            overflow-x: hidden; 
+            position: relative;
             
-            /* جعل صورتك هي الخلفية الكاملة للموقع من وراء */
-            background-image: linear-gradient(rgba(26, 0, 16, 0.75), rgba(42, 0, 24, 0.75)), url('1000136325.jpg');
+            /* سحب الصورة مباشرة في الخلفية مع طبقة حماية غامقة ليتضح الكلام */
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('1000136325.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
 
+        /* حاوية التحكم في الصوت مثل الرابط الأصلي الناجح */
         .audio-controls {
-            position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.15);
+            position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3); display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
         .control-btn {
             background: linear-gradient(45deg, #ff416c, #ff4b2b); border: none; color: white;
             padding: 6px 15px; font-size: 0.9rem; font-weight: bold; border-radius: 20px; cursor: pointer;
         }
         .pause-btn { background: #555; }
-        .status-text { font-size: 0.85rem; color: #ffb3d1; font-style: italic; }
+        .status-text { font-size: 0.85rem; color: #fff; font-weight: bold; }
         
+        /* الحاوية الزجاجية للعداد والكلام فوق الخلفية */
         .main-container {
-            max-width: 450px; width: 100%; z-index: 10; background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px); padding: 35px 25px; border-radius: 30px;
-            border: 1px solid rgba(255, 192, 203, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); margin-top: 60px;
+            max-width: 450px; width: 100%; z-index: 10; background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px); padding: 35px 25px; border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8); margin-top: 60px;
         }
         h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px rgba(255, 65, 108, 0.7); margin-bottom: 25px; }
         
+        /* تصميم العداد المستمر المظبوط */
         .timer-title {
-            font-size: 1.1rem; color: #fff; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px rgba(255,255,255,0.5);
+            font-size: 1.1rem; color: #fff; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
         .timer-container {
             display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; direction: ltr;
         }
         .timer-box {
-            background: rgba(255, 65, 108, 0.25); border: 1px solid rgba(255, 154, 158, 0.4);
-            padding: 8px 4px; border-radius: 12px; min-width: 60px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: rgba(255, 65, 108, 0.35); border: 1px solid rgba(255, 154, 158, 0.5);
+            padding: 8px 4px; border-radius: 12px; min-width: 60px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .timer-num {
             font-size: 1.3rem; font-weight: bold; color: #fff; text-shadow: 0 0 8px #ff416c;
         }
         .timer-label {
-            font-size: 0.75rem; color: #ffb3d1; margin-top: 2px;
+            font-size: 0.75rem; color: #ffb3d1; margin-top: 2px; font-weight: bold;
         }
 
-        .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; }
-        .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; }
+        .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
         .heart { position: absolute; animation: moveUp 5s linear infinite; bottom: -10%; opacity: 0.5; z-index: 1; pointer-events: none; }
         @keyframes moveUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
@@ -67,10 +85,11 @@
 </head>
 <body>
 
+    <!-- الأغنية كاملة وبنفس الرابط الأصلي المضمون اللي اشتغل عندك -->
     <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
-        <span class="status-text" id="music-status">انقر تشغيل لسماع الأغنية 🎵</span>
+        <span class="status-text" id="music-status">اضغط تشغيل للأغنية 🎵</span>
         <button class="control-btn" onclick="manualPlay()">▶ تشغيل</button>
         <button class="control-btn pause-btn" onclick="manualPause()">⏸ إيقاف</button>
     </div>
@@ -78,6 +97,7 @@
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
 
+        <!-- العداد الزمني شغال ومستمر فوق الخلفية -->
         <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
         <div class="timer-container">
             <div class="timer-box"><div class="timer-num" id="seconds">00</div><div class="timer-label">ثانية</div></div>
@@ -96,12 +116,12 @@
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
 
-        // تشغيل عادي وطبيعي جداً لتجنب حظر المتصفحات
+        // كود التشغيل الطبيعي تماماً لضمان عمل الأغنية 100% بدون أي تعليق
         function manualPlay() {
             audio.play().then(() => {
                 statusText.innerText = "🎵 الأغنية تعمل الآن";
             }).catch(err => {
-                statusText.innerText = "❌ اضغط مجدداً";
+                statusText.innerText = "❌ اضغط مجدداً للتشغيل";
             });
         }
         
@@ -110,15 +130,15 @@
             statusText.innerText = "⏸ تم الإيقاف"; 
         }
 
-        // تشغيل الصوت تلقائياً عند أول لمسة للشاشة في أي مكان
+        // تشغيل فوري بمجرد لمس الشاشة في أي مكان (زي ما كان شغال عندك)
         document.addEventListener('click', () => {
-            if(audio.paused) { manualPlay(); }
+            if (audio.paused) { manualPlay(); }
         }, { once: true });
         document.addEventListener('touchstart', () => {
-            if(audio.paused) { manualPlay(); }
+            if (audio.paused) { manualPlay(); }
         }, { once: true });
 
-        // كود العداد المستمر
+        // كود العداد الزمني الحقيقي المستمر
         function updateTimer() {
             const now = new Date();
             
@@ -150,7 +170,7 @@
         setInterval(updateTimer, 1000);
         updateTimer(); 
 
-        // قلوب تطير في الخلفية
+        // قلوب تتطاير في الخلفية بشكل متناسق
         setInterval(() => {
             const heart = document.createElement('div');
             heart.classList.add('heart');
