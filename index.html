@@ -5,116 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أمي وأبي .. أغلى ما أملك ❤️</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a0010, #3a0020, #2a0018);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-            overflow-x: hidden;
-            position: relative;
+            color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 100vh; padding: 20px; text-align: center; overflow-x: hidden; position: relative;
         }
-        /* لوحة التحكم في الموسيقى علوية وأنيقة */
         .audio-controls {
-            position: fixed;
-            top: 20px;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            padding: 8px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .control-btn {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border: none;
-            color: white;
-            padding: 6px 15px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b); border: none; color: white;
+            padding: 6px 15px; font-size: 0.9rem; font-weight: bold; border-radius: 20px; cursor: pointer;
         }
-        .control-btn:active {
-            transform: scale(0.95);
-        }
-        .pause-btn {
-            background: #555;
-        }
-        .status-text {
-            font-size: 0.85rem;
-            color: #ffb3d1;
-            font-style: italic;
-        }
-        /* الحاوية الرئيسية للموقع */
+        .pause-btn { background: #555; }
+        .status-text { font-size: 0.85rem; color: #ffb3d1; font-style: italic; }
         .main-container {
-            max-width: 450px;
-            width: 100%;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(10px);
-            padding: 30px 25px;
-            border-radius: 30px;
-            border: 2px solid rgba(255, 192, 203, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            margin-top: 60px;
+            max-width: 450px; width: 100%; z-index: 10; background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 30px;
+            border: 2px solid rgba(255, 192, 203, 0.3); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin-top: 60px;
         }
-        h1 {
-            font-size: 2.2rem;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(255, 65, 108, 0.7);
-            margin-bottom: 25px;
-        }
-        .img-box {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 3px solid #fff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            margin-bottom: 25px;
-            background: #222;
-        }
-        .img-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .text-love {
-            font-size: 1.8rem;
-            color: #ff9a9e;
-            margin-bottom: 12px;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 154, 158, 0.3);
-        }
-        .desc {
-            font-size: 1.1rem;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-        /* تأثير القلوب المتساقطة الرومانسية */
-        .heart {
-            position: absolute;
-            animation: moveUp 5s linear infinite;
-            bottom: -10%;
-            opacity: 0.6;
-            z-index: 1;
-            user-select: none;
-            pointer-events: none;
-        }
+        h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px rgba(255, 65, 108, 0.7); margin-bottom: 25px; }
+        .img-box { border-radius: 20px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px; background: #222; }
+        .img-box img { width: 100%; height: auto; display: block; }
+        .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; }
+        .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; }
+        .heart { position: absolute; animation: moveUp 5s linear infinite; bottom: -10%; opacity: 0.6; z-index: 1; pointer-events: none; }
         @keyframes moveUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
             100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
@@ -133,11 +52,9 @@
 
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
-
         <div class="img-box">
             <img src="1000093292.jpg" alt="أمي وأبي الغاليين">
         </div>
-
         <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
         <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
     </div>
@@ -146,34 +63,20 @@
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
 
-        // خدعة التشغيل التلقائي: بمجرد لمس الشاشة أو الضغط في أي مكان تعمل الأغنية فوراً
         function autoPlayHandler() {
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
-                // حذف المستمعين بعد التشغيل الناجح لتجنب تكرار الكود
                 document.removeEventListener('click', autoPlayHandler);
                 document.removeEventListener('touchstart', autoPlayHandler);
-            }).catch(e => {
-                console.log("في انتظار تفاعل المستخدم أولاً...");
-            });
+            }).catch(e => console.log("في انتظار التفاعل..."));
         }
 
-        // الاستماع لأي لمسة أو ضغطة في الصفحة لتشغيل الصوت تلقائياً
         document.addEventListener('click', autoPlayHandler);
         document.addEventListener('touchstart', autoPlayHandler);
 
-        // وظائف الأزرار العلوية للتحكم اليدوي الكامل
-        function manualPlay() {
-            audio.play();
-            statusText.innerText = "🎵 أمي جنة.. شغال";
-        }
+        function manualPlay() { audio.play(); statusText.innerText = "🎵 أمي جنة.. شغال"; }
+        function manualPause() { audio.pause(); statusText.innerText = "⏸ تم الإيقاف"; }
 
-        function manualPause() {
-            audio.pause();
-            statusText.innerText = "⏸ تم الإيقاف مؤقتاً";
-        }
-
-        // كود تأثير القلوب المتساقطة المبهج
         function startHearts() {
             setInterval(() => {
                 const heart = document.createElement('div');
@@ -187,7 +90,6 @@
                 setTimeout(() => heart.remove(), 5000);
             }, 300);
         }
-
         window.onload = startHearts;
     </script>
 </body>
