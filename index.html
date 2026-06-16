@@ -26,7 +26,7 @@
             overflow-x: hidden; 
             position: relative;
             
-            /* صورتك في الخلفية من ورا بكود مضمون ومباشر */
+            /* هنا جعلنا صورتك هي الخلفية الكاملة للموقع من ورا */
             background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('1000136325.jpg');
             background-size: cover;
             background-position: center;
@@ -82,7 +82,7 @@
 </head>
 <body>
 
-    <audio id="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop preload="auto"></audio>
+    <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
         <span class="status-text" id="music-status">اضغط تشغيل للأغنية 🎵</span>
@@ -95,5 +95,83 @@
 
         <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
         <div class="timer-container">
+            <div class="timer-box"><div class="timer-num" id="years">00</div><div class="timer-label">سنة</div></div>
+            <div class="timer-box"><div class="timer-num" id="months">00</div><div class="timer-label">شهر</div></div>
+            <div class="timer-box"><div class="timer-num" id="days">00</div><div class="timer-label">يوم</div></div>
+            <div class="timer-box"><div class="timer-num" id="hours">00</div><div class="timer-label">ساعة</div></div>
+            <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">دقيقة</div></div>
             <div class="timer-box"><div class="timer-num" id="seconds">00</div><div class="timer-label">ثانية</div></div>
-            <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">
+        </div>
+
+        <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
+        <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio-player');
+        const statusText = document.getElementById('music-status');
+
+        // التشغيل التقليدي المضمون
+        function manualPlay() {
+            audio.play().then(() => {
+                statusText.innerText = "🎵 الأغنية تعمل الآن";
+            }).catch(err => {
+                statusText.innerText = "❌ اضغط مجدداً";
+            });
+        }
+        
+        function manualPause() { 
+            audio.pause(); 
+            statusText.innerText = "⏸ تم الإيقاف"; 
+        }
+
+        // تشغيل مع أول لمسة شاشة تلقائياً
+        document.addEventListener('click', () => { if (audio.paused) { manualPlay(); } }, { once: true });
+        document.addEventListener('touchstart', () => { if (audio.paused) { manualPlay(); } }, { once: true });
+
+        // العداد الزمني الحقيقي
+        function updateTimer() {
+            const now = new Date();
+            let years = now.getFullYear() - 2011;
+            let months = now.getMonth() - 1; 
+            let days = now.getDate() - 8;
+            let hours = now.getHours() - 15;
+            let minutes = now.getMinutes() - 8;
+            let seconds = now.getSeconds() - 50;
+            
+            if (seconds < 0) { seconds += 60; minutes--; }
+            if (minutes < 0) { minutes += 60; hours--; }
+            if (hours < 0) { hours += 24; days--; }
+            if (days < 0) {
+                const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += prevMonthDays;
+                months--;
+            }
+            if (months < 0) { months += 12; years--; }
+            
+            document.getElementById('years').innerText = years;
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer(); 
+
+        // قلوب متطايرة في الخلفية
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const types = ['❤️', '💖', '💕', '✨'];
+            heart.innerHTML = types[Math.floor(Math.random() * types.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 350);
+    </script>
+</body>
+</html>
