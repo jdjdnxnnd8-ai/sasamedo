@@ -6,33 +6,22 @@
     <title>أمي وأبي .. أغلى ما أملك ❤️</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a0010, #3a0020, #2a0018);
             color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
             min-height: 100vh; padding: 20px; text-align: center; overflow-x: hidden; position: relative;
-        }
-        
-        /* واجهة الدخول لضمان تشغيل الصوت غصب عن حظر المتصفح */
-        .welcome-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #1a0010, #2a0018);
-            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        .welcome-btn {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b); border: none; color: white;
-            padding: 15px 40px; font-size: 1.3rem; font-weight: bold; border-radius: 30px; cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 65, 108, 0.5); animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            
+            /* جعل صورتك هي الخلفية الكاملة للموقع من وراء */
+            background-image: linear-gradient(rgba(26, 0, 16, 0.75), rgba(42, 0, 24, 0.75)), url('1000136325.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
         .audio-controls {
-            position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.1);
+            position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -44,13 +33,11 @@
         .status-text { font-size: 0.85rem; color: #ffb3d1; font-style: italic; }
         
         .main-container {
-            max-width: 450px; width: 100%; z-index: 10; background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 30px;
-            border: 2px solid rgba(255, 192, 203, 0.3); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin-top: 60px;
+            max-width: 450px; width: 100%; z-index: 10; background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px); padding: 35px 25px; border-radius: 30px;
+            border: 1px solid rgba(255, 192, 203, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); margin-top: 60px;
         }
         h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px rgba(255, 65, 108, 0.7); margin-bottom: 25px; }
-        .img-box { border-radius: 20px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px; background: #222; min-height: 250px; display: flex; align-items: center; justify-content: center; }
-        .img-box img { width: 100%; height: auto; display: block; }
         
         .timer-title {
             font-size: 1.1rem; color: #fff; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px rgba(255,255,255,0.5);
@@ -59,7 +46,7 @@
             display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; direction: ltr;
         }
         .timer-box {
-            background: rgba(255, 65, 108, 0.2); border: 1px solid rgba(255, 154, 158, 0.4);
+            background: rgba(255, 65, 108, 0.25); border: 1px solid rgba(255, 154, 158, 0.4);
             padding: 8px 4px; border-radius: 12px; min-width: 60px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .timer-num {
@@ -71,35 +58,25 @@
 
         .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; }
         .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; }
-        .heart { position: absolute; animation: moveUp 5s linear infinite; bottom: -10%; opacity: 0.6; z-index: 1; pointer-events: none; }
+        .heart { position: absolute; animation: moveUp 5s linear infinite; bottom: -10%; opacity: 0.5; z-index: 1; pointer-events: none; }
         @keyframes moveUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
             100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- شاشة الدخول الإجبارية لتفعيل الصوت وضمان عمله -->
-    <div class="welcome-overlay" id="welcomeOverlay">
-        <h2 style="margin-bottom: 20px; color: #ffb3d1;">❤️ مرحباً بك ❤️</h2>
-        <button class="welcome-btn" onclick="startEverything()">اضغط لرؤية المفاجأة ✨</button>
-    </div>
-
     <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
-        <span class="status-text" id="music-status">الموسيقى جاهزة..</span>
+        <span class="status-text" id="music-status">انقر تشغيل لسماع الأغنية 🎵</span>
         <button class="control-btn" onclick="manualPlay()">▶ تشغيل</button>
         <button class="control-btn pause-btn" onclick="manualPause()">⏸ إيقاف</button>
     </div>
 
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
-        
-        <div class="img-box">
-            <img src="1000136325.jpg" alt="أمي وأبي الغاليين" onerror="this.src='https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/1000136325.jpg'">
-        </div>
 
         <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
         <div class="timer-container">
@@ -119,35 +96,29 @@
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
 
-        // دالة التشغيل التي تنطلق بمجرد نقر زر الترحيب
-        function startEverything() {
-            // إخفاء شاشة الترحيب
-            const overlay = document.getElementById('welcomeOverlay');
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.style.visibility = 'hidden', 500);
-
-            // تشغيل الصوت والقفز فوراً للثانية 18
-            audio.currentTime = 18;
-            audio.play().then(() => {
-                statusText.innerText = "🎵 أمي جنة.. شغال";
-            }).catch(err => {
-                statusText.innerText = "❌ اضغط تشغيل";
-                console.log(err);
-            });
-            
-            // تفعيل حركة القلوب والعداد
-            setInterval(updateTimer, 1000);
-            updateTimer();
-            startHearts();
-        }
-
+        // تشغيل عادي وطبيعي جداً لتجنب حظر المتصفحات
         function manualPlay() {
-            audio.currentTime = 18;
-            audio.play().then(() => { statusText.innerText = "🎵 أمي جنة.. شغال"; });
+            audio.play().then(() => {
+                statusText.innerText = "🎵 الأغنية تعمل الآن";
+            }).catch(err => {
+                statusText.innerText = "❌ اضغط مجدداً";
+            });
         }
-        function manualPause() { audio.pause(); statusText.innerText = "⏸ تم الإيقاف"; }
+        
+        function manualPause() { 
+            audio.pause(); 
+            statusText.innerText = "⏸ تم الإيقاف"; 
+        }
 
-        // العداد الرقمي الحقيقي المستمر
+        // تشغيل الصوت تلقائياً عند أول لمسة للشاشة في أي مكان
+        document.addEventListener('click', () => {
+            if(audio.paused) { manualPlay(); }
+        }, { once: true });
+        document.addEventListener('touchstart', () => {
+            if(audio.paused) { manualPlay(); }
+        }, { once: true });
+
+        // كود العداد المستمر
         function updateTimer() {
             const now = new Date();
             
@@ -176,19 +147,21 @@
             document.getElementById('seconds').innerText = seconds;
         }
 
-        function startHearts() {
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                const types = ['❤️', '💖', '💕', '✨'];
-                heart.innerHTML = types[Math.floor(Math.random() * types.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 5000);
-            }, 300);
-        }
+        setInterval(updateTimer, 1000);
+        updateTimer(); 
+
+        // قلوب تطير في الخلفية
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const types = ['❤️', '💖', '💕', '✨'];
+            heart.innerHTML = types[Math.floor(Math.random() * types.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 350);
     </script>
 </body>
 </html>
