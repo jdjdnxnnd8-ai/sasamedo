@@ -58,7 +58,6 @@
         .start-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 0 35px rgba(255, 65, 108, 0.9);
-            letter-spacing: 1px;
         }
         /* الشاشة الثانية: العرض الرومانسي للمطبخ والعائلة */
         #content-screen {
@@ -78,3 +77,118 @@
             padding: 15px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 65, 108, 0.3);
             transform: scale(0.5);
+            opacity: 0;
+            animation: popUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .img-container {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            background-color: rgba(255,255,255,0.05);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .img-card:hover .img-container img {
+            transform: scale(1.05);
+        }
+        /* نصوص المشاعر الجياشة */
+        .romantic-text {
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fe9a8b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(255, 154, 158, 0.3);
+            margin-top: 15px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInText 2s ease forwards 0.5s;
+        }
+        .dedication {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            max-width: 90%;
+            opacity: 0;
+            animation: fadeInText 2s ease forwards 1s;
+        }
+        /* تأثير القلوب الرومانسية المتساقطة */
+        .heart {
+            position: absolute;
+            animation: fall linear infinite;
+            top: -10%;
+            opacity: 0.8;
+            user-select: none;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes popUp {
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeInText {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-screen">
+        <h1>أمي وأبي أغلى ما ليا ❤️</h1>
+        <p class="subtitle">أنتم الحياة وكل ما أحب...</p>
+        <button class="start-btn" onclick="showLove()">اضغط هنا يا غالي</button>
+    </div>
+
+    <div id="content-screen">
+        <div class="img-card">
+            <div class="img-container">
+                <img src="1000093292.jpg" alt="أمي وأبي الغاليين" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600&auto=format&fit=crop'">
+            </div>
+        </div>
+        <h2 class="romantic-text">ربنا يخليكم ليا ❤️</h2>
+        <p class="dedication">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
+    </div>
+
+    <script>
+        function showLove() {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('content-screen').style.display = 'flex';
+            
+            // إطلاق تأثير القلوب الرومانسية بكثافة وأشكال مختلفة ومميزة
+            setInterval(createHeart, 200);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // تشكيلة رموز رومانسية متنوعة تظهر بشكل عشوائي ومبهج
+            const heartTypes = ['❤️', '💖', '💝', '💕', '✨'];
+            heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's'; 
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
