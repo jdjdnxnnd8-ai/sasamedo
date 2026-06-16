@@ -7,7 +7,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        /* ضبط الصورة لتكون في الخلفية تماماً غصب عن المتصفح */
         html, body {
             height: 100%;
             margin: 0;
@@ -27,15 +26,15 @@
             overflow-x: hidden; 
             position: relative;
             
-            /* سحب الصورة مباشرة في الخلفية مع طبقة حماية غامقة ليتضح الكلام */
+            /* صورتك في الخلفية من ورا بكود مضمون ومباشر */
             background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('1000136325.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+            background-color: #1a0010; 
         }
 
-        /* حاوية التحكم في الصوت مثل الرابط الأصلي الناجح */
         .audio-controls {
             position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px;
@@ -48,17 +47,15 @@
         .pause-btn { background: #555; }
         .status-text { font-size: 0.85rem; color: #fff; font-weight: bold; }
         
-        /* الحاوية الزجاجية للعداد والكلام فوق الخلفية */
         .main-container {
-            max-width: 450px; width: 100%; z-index: 10; background: rgba(0, 0, 0, 0.4);
+            max-width: 450px; width: 100%; z-index: 10; background: rgba(0, 0, 0, 0.55);
             backdrop-filter: blur(10px); padding: 35px 25px; border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8); margin-top: 60px;
         }
         h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px rgba(255, 65, 108, 0.7); margin-bottom: 25px; }
         
-        /* تصميم العداد المستمر المظبوط */
         .timer-title {
-            font-size: 1.1rem; color: #fff; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            font-size: 1.1rem; color: #fff; margin-bottom: 12px; font-weight: bold;
         }
         .timer-container {
             display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; direction: ltr;
@@ -74,8 +71,8 @@
             font-size: 0.75rem; color: #ffb3d1; margin-top: 2px; font-weight: bold;
         }
 
-        .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; }
+        .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; }
         .heart { position: absolute; animation: moveUp 5s linear infinite; bottom: -10%; opacity: 0.5; z-index: 1; pointer-events: none; }
         @keyframes moveUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
@@ -85,8 +82,7 @@
 </head>
 <body>
 
-    <!-- الأغنية كاملة وبنفس الرابط الأصلي المضمون اللي اشتغل عندك -->
-    <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
+    <audio id="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
         <span class="status-text" id="music-status">اضغط تشغيل للأغنية 🎵</span>
@@ -97,91 +93,7 @@
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
 
-        <!-- العداد الزمني شغال ومستمر فوق الخلفية -->
         <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
         <div class="timer-container">
             <div class="timer-box"><div class="timer-num" id="seconds">00</div><div class="timer-label">ثانية</div></div>
-            <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">دقيقة</div></div>
-            <div class="timer-box"><div class="timer-num" id="hours">00</div><div class="timer-label">ساعة</div></div>
-            <div class="timer-box"><div class="timer-num" id="days">00</div><div class="timer-label">يوم</div></div>
-            <div class="timer-box"><div class="timer-num" id="months">00</div><div class="timer-label">شهر</div></div>
-            <div class="timer-box"><div class="timer-num" id="years">00</div><div class="timer-label">سنة</div></div>
-        </div>
-
-        <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
-        <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
-    </div>
-
-    <script>
-        const audio = document.getElementById('audio-player');
-        const statusText = document.getElementById('music-status');
-
-        // كود التشغيل الطبيعي تماماً لضمان عمل الأغنية 100% بدون أي تعليق
-        function manualPlay() {
-            audio.play().then(() => {
-                statusText.innerText = "🎵 الأغنية تعمل الآن";
-            }).catch(err => {
-                statusText.innerText = "❌ اضغط مجدداً للتشغيل";
-            });
-        }
-        
-        function manualPause() { 
-            audio.pause(); 
-            statusText.innerText = "⏸ تم الإيقاف"; 
-        }
-
-        // تشغيل فوري بمجرد لمس الشاشة في أي مكان (زي ما كان شغال عندك)
-        document.addEventListener('click', () => {
-            if (audio.paused) { manualPlay(); }
-        }, { once: true });
-        document.addEventListener('touchstart', () => {
-            if (audio.paused) { manualPlay(); }
-        }, { once: true });
-
-        // كود العداد الزمني الحقيقي المستمر
-        function updateTimer() {
-            const now = new Date();
-            
-            let years = now.getFullYear() - 2011;
-            let months = now.getMonth() - 1; 
-            let days = now.getDate() - 8;
-            let hours = now.getHours() - 15;
-            let minutes = now.getMinutes() - 8;
-            let seconds = now.getSeconds() - 50;
-            
-            if (seconds < 0) { seconds += 60; minutes--; }
-            if (minutes < 0) { minutes += 60; hours--; }
-            if (hours < 0) { hours += 24; days--; }
-            if (days < 0) {
-                const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-                days += prevMonthDays;
-                months--;
-            }
-            if (months < 0) { months += 12; years--; }
-            
-            document.getElementById('years').innerText = years;
-            document.getElementById('months').innerText = months;
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = hours;
-            document.getElementById('minutes').innerText = minutes;
-            document.getElementById('seconds').innerText = seconds;
-        }
-
-        setInterval(updateTimer, 1000);
-        updateTimer(); 
-
-        // قلوب تتطاير في الخلفية بشكل متناسق
-        setInterval(() => {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            const types = ['❤️', '💖', '💕', '✨'];
-            heart.innerHTML = types[Math.floor(Math.random() * types.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }, 350);
-    </script>
-</body>
-</html>
+            <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">
