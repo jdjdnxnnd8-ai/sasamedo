@@ -12,6 +12,25 @@
             color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
             min-height: 100vh; padding: 20px; text-align: center; overflow-x: hidden; position: relative;
         }
+        
+        /* واجهة الدخول لضمان تشغيل الصوت غصب عن حظر المتصفح */
+        .welcome-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #1a0010, #2a0018);
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .welcome-btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b); border: none; color: white;
+            padding: 15px 40px; font-size: 1.3rem; font-weight: bold; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 65, 108, 0.5); animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         .audio-controls {
             position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px;
@@ -61,6 +80,12 @@
 </head>
 <body>
 
+    <!-- شاشة الدخول الإجبارية لتفعيل الصوت وضمان عمله -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <h2 style="margin-bottom: 20px; color: #ffb3d1;">❤️ مرحباً بك ❤️</h2>
+        <button class="welcome-btn" onclick="startEverything()">اضغط لرؤية المفاجأة ✨</button>
+    </div>
+
     <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
@@ -73,18 +98,17 @@
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
         
         <div class="img-box">
-            <!-- تم توجيه المسار بدقة لصورتك لتجنب الخطأ الموضح في الصورة 1000136330.jpg -->
-            <img src="1000136325.jpg" alt="أمي وأبي الغاليين">
+            <img src="1000136325.jpg" alt="أمي وأبي الغاليين" onerror="this.src='https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/1000136325.jpg'">
         </div>
 
         <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
         <div class="timer-container">
-            <div class="timer-box"><div class="timer-num" id="seconds">35</div><div class="timer-label">ثانية</div></div>
-            <div class="timer-box"><div class="timer-num" id="minutes">0</div><div class="timer-label">دقيقة</div></div>
-            <div class="timer-box"><div class="timer-num" id="hours">0</div><div class="timer-label">ساعة</div></div>
-            <div class="timer-box"><div class="timer-num" id="days">8</div><div class="timer-label">يوم</div></div>
-            <div class="timer-box"><div class="timer-num" id="months">4</div><div class="timer-label">شهر</div></div>
-            <div class="timer-box"><div class="timer-num" id="years">15</div><div class="timer-label">سنة</div></div>
+            <div class="timer-box"><div class="timer-num" id="seconds">00</div><div class="timer-label">ثانية</div></div>
+            <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">دقيقة</div></div>
+            <div class="timer-box"><div class="timer-num" id="hours">00</div><div class="timer-label">ساعة</div></div>
+            <div class="timer-box"><div class="timer-num" id="days">00</div><div class="timer-label">يوم</div></div>
+            <div class="timer-box"><div class="timer-num" id="months">00</div><div class="timer-label">شهر</div></div>
+            <div class="timer-box"><div class="timer-num" id="years">00</div><div class="timer-label">سنة</div></div>
         </div>
 
         <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
@@ -94,44 +118,36 @@
     <script>
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
-        let skipped = false;
 
-        // طريقة تشغيل ذكية: نشغل الصوت أولاً، وعند أول استجابة فعلية نقفز للثانية 18 لتفادي حظر المتصفحات
-        function safePlay() {
+        // دالة التشغيل التي تنطلق بمجرد نقر زر الترحيب
+        function startEverything() {
+            // إخفاء شاشة الترحيب
+            const overlay = document.getElementById('welcomeOverlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.visibility = 'hidden', 500);
+
+            // تشغيل الصوت والقفز فوراً للثانية 18
+            audio.currentTime = 18;
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
             }).catch(err => {
-                console.log("في انتظار تفاعل المستخدم");
+                statusText.innerText = "❌ اضغط تشغيل";
+                console.log(err);
             });
+            
+            // تفعيل حركة القلوب والعداد
+            setInterval(updateTimer, 1000);
+            updateTimer();
+            startHearts();
         }
-
-        // الاستماع لحدث بدء تشغيل الصوت الفعلي للقفز الفوري
-        audio.addEventListener('playing', () => {
-            if (!skipped) {
-                audio.currentTime = 18;
-                skipped = true;
-            }
-        });
-
-        function autoPlayHandler() {
-            safePlay();
-            document.removeEventListener('click', autoPlayHandler);
-            document.removeEventListener('touchstart', autoPlayHandler);
-        }
-
-        document.addEventListener('click', autoPlayHandler);
-        document.addEventListener('touchstart', autoPlayHandler);
 
         function manualPlay() {
-            safePlay();
+            audio.currentTime = 18;
+            audio.play().then(() => { statusText.innerText = "🎵 أمي جنة.. شغال"; });
         }
-        
-        function manualPause() { 
-            audio.pause(); 
-            statusText.innerText = "⏸ تم الإيقاف"; 
-        }
+        function manualPause() { audio.pause(); statusText.innerText = "⏸ تم الإيقاف"; }
 
-        // العداد الرقمي المطور والمبني على فارق زمني حقيقي ثابت وثواني تتحرك
+        // العداد الرقمي الحقيقي المستمر
         function updateTimer() {
             const now = new Date();
             
@@ -160,9 +176,6 @@
             document.getElementById('seconds').innerText = seconds;
         }
 
-        setInterval(updateTimer, 1000);
-        updateTimer(); 
-
         function startHearts() {
             setInterval(() => {
                 const heart = document.createElement('div');
@@ -176,7 +189,6 @@
                 setTimeout(() => heart.remove(), 5000);
             }, 300);
         }
-        window.onload = startHearts;
     </script>
 </body>
 </html>
