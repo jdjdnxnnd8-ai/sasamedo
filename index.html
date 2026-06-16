@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أمي وأبي .. أغلى ما أملك ❤️</title>
+    <title>أغلى ما أملك ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,138 +12,134 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #12000c, #2b001a, #4a0028);
+            background: linear-gradient(135deg, #1a0010, #3a0020, #2a0018);
             color: #fff;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            overflow: hidden;
+            padding: 20px;
             text-align: center;
             position: relative;
+            overflow-x: hidden;
         }
-        /* الشاشة الأولى */
-        #welcome-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
+        .main-container {
+            max-width: 450px;
+            width: 100%;
             z-index: 10;
-            animation: fadeIn 2s ease-in-out;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 192, 203, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
         h1 {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             color: #fff;
-            text-shadow: 0 0 20px rgba(255, 65, 108, 0.8);
-            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 65, 108, 0.7);
+            margin-bottom: 20px;
         }
-        .subtitle {
-            font-size: 1.3rem;
-            color: #ffb3d1;
-            margin-top: -15px;
-            font-style: italic;
-        }
-        .start-btn {
-            padding: 15px 60px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(255, 75, 43, 0.6);
-            transition: all 0.3s ease;
-        }
-        .start-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 35px rgba(255, 65, 108, 0.9);
-        }
-        /* الشاشة الثانية */
-        #content-screen {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            max-width: 480px;
-            width: 90%;
-            z-index: 10;
-        }
-        .img-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 182, 193, 0.6);
-            border-radius: 25px;
-            padding: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 65, 108, 0.5);
-            transform: scale(0.5);
-            opacity: 0;
-            animation: popUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-        .img-container {
-            border-radius: 18px;
+        .img-box {
+            border-radius: 20px;
             overflow: hidden;
-            position: relative;
+            border: 3px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+            background: #222;
         }
-        .img-container img {
+        .img-box img {
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.5s ease;
         }
-        /* نصوص المشاعر */
-        .romantic-text {
-            font-size: 2.2rem;
-            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fe9a8b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(255, 154, 158, 0.3);
-            margin-top: 15px;
-            font-weight: bold;
-            opacity: 0;
-            animation: fadeInText 2s ease forwards 0.5s;
-        }
-        .dedication {
+        .music-btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 12px 30px;
             font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        .music-btn:active {
+            transform: scale(0.95);
+        }
+        .text-love {
+            font-size: 1.8rem;
+            color: #ff9a9e;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .desc {
+            font-size: 1.05rem;
             color: #e0e0e0;
             line-height: 1.6;
-            max-width: 90%;
-            opacity: 0;
-            animation: fadeInText 2s ease forwards 1s;
         }
-        /* تأثير القلوب المتساقطة */
+        /* تأثير القلوب */
         .heart {
             position: absolute;
-            animation: fall linear infinite;
-            top: -10%;
-            opacity: 0.8;
+            animation: moveUp 5s linear infinite;
+            bottom: -10%;
+            opacity: 0.6;
+            z-index: 1;
             user-select: none;
             pointer-events: none;
         }
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes popUp {
-            to { transform: scale(1); opacity: 1; }
-        }
-        @keyframes fadeInText {
-            to { opacity: 1; }
+        @keyframes moveUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <audio id="bg-music" src="https://archive.org/download/omy-ganna-sultan/omy-ganna.mp3" loop></audio>
+    <!-- الأغنية المباشرة -->
+    <audio id="audio-player" src="https://archive.org/download/omy-ganna-sultan/omy-ganna.mp3" loop></audio>
 
-    <div id="welcome-screen">
+    <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
-        <p class="subtitle">أنتم الحياة وكل ما أحب...</p>
-        <button class="start-btn" onclick="showLove()">اضغط هنا  </button>
+        
+        <!-- زر لتشغيل الأغنية مباشرة وتجنب قيود المتصفح -->
+        <button class="music-btn" onclick="playMusic()">🎵 تشغيل أغنية أمي جنة 🎵</button>
+
+        <div class="img-box">
+            <!-- استدعاء الصورة المباشرة بحروف صغيرة كاملاً للامتثال للملف المرفوع -->
+            <img src="1000093292.jpg" alt="أمي وأبي الغاليين">
+        </div>
+
+        <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
+        <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
     </div>
 
-    
+    <script>
+        // تشغيل الموسيقى عند ضغط الزر الصريح لضمان كسر حماية المتصفح
+        function playMusic() {
+            const audio = document.getElementById('audio-player');
+            audio.play().catch(e => alert("اضغط مرة أخرى للتشغيل"));
+        }
+
+        // إنشاء تأثير القلوب الصاعدة تلقائياً عند فتح الصفحة
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                const types = ['❤️', '💖', '💕', '✨'];
+                heart.innerHTML = types[Math.floor(Math.random() * types.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
+        }
+        
+        window.onload = startHearts;
+    </script>
+</body>
+</html>
