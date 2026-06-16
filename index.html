@@ -29,7 +29,7 @@
             border: 2px solid rgba(255, 192, 203, 0.3); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin-top: 60px;
         }
         h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px rgba(255, 65, 108, 0.7); margin-bottom: 25px; }
-        .img-box { border-radius: 20px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px; background: #222; min-height: 250px; display: flex; align-items: center; justify-content: center;}
+        .img-box { border-radius: 20px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px; background: #222; }
         .img-box img { width: 100%; height: auto; display: block; }
         .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; }
         .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; }
@@ -42,11 +42,7 @@
 </head>
 <body>
 
-    <!-- مشغل الصوت الأساسي والاحتياطي لضمان تشغيل الأغنية في كل البلدان -->
-    <audio id="audio-player" loop>
-        <source src="https://b.top4top.io/m_31109p0g91.mp3" type="audio/mp3">
-        <source src="https://archive.org/download/omy-ganna-sultan/omy-ganna.mp3" type="audio/mp3">
-    </audio>
+    <audio id="audio-player" src="https://f.top4top.io/m_311186b591.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
         <span class="status-text" id="music-status">الموسيقى جاهزة..</span>
@@ -57,8 +53,7 @@
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
         <div class="img-box">
-            <!-- استدعاء اسم صورتك المرفوعة مباشرة -->
-            <img src="1000093292.jpg" alt="أمي وأبي الغاليين" onerror="this.src='https://via.placeholder.com/400x300/4a0028/ffffff?text=%D8%A3%D9%85%D9%8A+%D9%88%D8%A3%D8%A8%D9%8A+%E2%9D%A4'">
+            <img src="https://l.top4top.io/p_31116oocn1.jpg" alt="أمي وأبي الغاليين">
         </div>
         <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
         <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
@@ -68,12 +63,13 @@
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
 
+        // محاولة التشغيل التلقائي بمجرد لمس الشاشة
         function autoPlayHandler() {
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
                 document.removeEventListener('click', autoPlayHandler);
                 document.removeEventListener('touchstart', autoPlayHandler);
-            }).catch(e => console.log("في انتظار التفاعل..."));
+            }).catch(e => console.log("بانتظار اللمس..."));
         }
 
         document.addEventListener('click', autoPlayHandler);
@@ -83,10 +79,9 @@
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
             }).catch(err => {
-                statusText.innerText = "❌ فشل التشغيل، جرب مرة أخرى";
+                statusText.innerText = "❌ اضغط مجدداً";
             });
         }
-        
         function manualPause() { audio.pause(); statusText.innerText = "⏸ تم الإيقاف"; }
 
         function startHearts() {
