@@ -6,76 +6,187 @@
     <title>أمي وأبي .. أغلى ما أملك ❤️</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #fff; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;
-            min-height: 100vh; 
-            padding: 20px; 
-            text-align: center; 
-            overflow-x: hidden; 
-            position: relative;
-            
-            /* خلفية متدرجة فخمة كبديل أساسي لو الصورة متحملتش */
             background: linear-gradient(135deg, #1a0010, #3a0020, #2a0018);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
+            color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 100vh; padding: 20px; text-align: center; overflow-x: hidden; position: relative;
         }
-
-        /* كود لتطبيق الصورة في الخلفية برمجياً وضمان عدم تعليق الشاشة */
-        .bg-loaded {
-            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('1000136325.jpg') !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-attachment: fixed !important;
-        }
-
         .audio-controls {
-            position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.2);
+            position: fixed; top: 20px; z-index: 100; background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px); padding: 8px 20px; border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3); display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .control-btn {
             background: linear-gradient(45deg, #ff416c, #ff4b2b); border: none; color: white;
             padding: 6px 15px; font-size: 0.9rem; font-weight: bold; border-radius: 20px; cursor: pointer;
         }
         .pause-btn { background: #555; }
-        .status-text { font-size: 0.85rem; color: #fff; font-weight: bold; }
+        .status-text { font-size: 0.85rem; color: #ffb3d1; font-style: italic; }
         
         .main-container {
-            max-width: 450px; width: 100%; z-index: 10; background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(10px); padding: 35px 25px; border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8); margin-top: 60px;
+            max-width: 450px; width: 100%; z-index: 10; background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px); padding: 30px 25px; border-radius: 30px;
+            border: 2px solid rgba(255, 192, 203, 0.3); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin-top: 60px;
         }
         h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px rgba(255, 65, 108, 0.7); margin-bottom: 25px; }
+        .img-box { border-radius: 20px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px; background: #222; }
+        .img-box img { width: 100%; height: auto; display: block; }
         
+        /* تصميم العداد الرقمي المطور والمترتب */
         .timer-title {
-            font-size: 1.1rem; color: #fff; margin-bottom: 12px; font-weight: bold;
+            font-size: 1.2rem; color: #fff; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px rgba(255,255,255,0.5);
         }
         .timer-container {
             display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; direction: ltr;
         }
         .timer-box {
-            background: rgba(255, 65, 108, 0.35); border: 1px solid rgba(255, 154, 158, 0.5);
-            padding: 8px 4px; border-radius: 12px; min-width: 60px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background: rgba(255, 65, 108, 0.2); border: 1px solid rgba(255, 154, 158, 0.4);
+            padding: 8px 4px; border-radius: 12px; min-width: 62px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .timer-num {
             font-size: 1.3rem; font-weight: bold; color: #fff; text-shadow: 0 0 8px #ff416c;
         }
         .timer-label {
-            font-size: 0.75rem; color: #ffb3d1; margin-top: 2px; font-weight: bold;
+            font-size: 0.75rem; color: #ffb3d1; margin-top: 2px;
         }
 
-        .
+        .text-love { font-size: 1.8rem; color: #ff9a9e; margin-bottom: 12px; font-weight: bold; }
+        .desc { font-size: 1.1rem; color: #e0e0e0; line-height: 1.6; }
+        .heart { position: absolute; animation: moveUp 5s linear infinite; bottom: -10%; opacity: 0.6; z-index: 1; pointer-events: none; }
+        @keyframes moveUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
+
+    <div class="audio-controls">
+        <span class="status-text" id="music-status">الموسيقى جاهزة..</span>
+        <button class="control-btn" onclick="manualPlay()">▶ تشغيل</button>
+        <button class="control-btn pause-btn" onclick="manualPause()">⏸ إيقاف</button>
+    </div>
+
+    <div class="main-container">
+        <h1>أمي وأبي أغلى ما ليا ❤️</h1>
+        
+        <div class="img-box">
+            <img src="1000136325.jpg" alt="أمي وأبي الغاليين" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500&auto=format&fit=crop'">
+        </div>
+
+        <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
+        <div class="timer-container">
+            <div class="timer-box">
+                <div class="timer-num" id="seconds">35</div>
+                <div class="timer-label">ثانية</div>
+            </div>
+            <div class="timer-box">
+                <div class="timer-num" id="minutes">0</div>
+                <div class="timer-label">دقيقة</div>
+            </div>
+            <div class="timer-box">
+                <div class="timer-num" id="hours">0</div>
+                <div class="timer-label">ساعة</div>
+            </div>
+            <div class="timer-box">
+                <div class="timer-num" id="days">8</div>
+                <div class="timer-label">يوم</div>
+            </div>
+            <div class="timer-box">
+                <div class="timer-num" id="months">4</div>
+                <div class="timer-label">شهر</div>
+            </div>
+            <div class="timer-box">
+                <div class="timer-num" id="years">15</div>
+                <div class="timer-label">سنة</div>
+            </div>
+        </div>
+
+        <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
+        <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio-player');
+        const statusText = document.getElementById('music-status');
+        
+        // الأغنية تبدأ من الثانية 18 (كلمة أمي جنة الله يقول)
+        const startTime = 18; 
+
+        function autoPlayHandler() {
+            audio.currentTime = startTime; 
+            audio.play().then(() => {
+                statusText.innerText = "🎵 أمي جنة.. شغال";
+                document.removeEventListener('click', autoPlayHandler);
+                document.removeEventListener('touchstart', autoPlayHandler);
+            }).catch(e => console.log("في انتظار اللمس..."));
+        }
+
+        document.addEventListener('click', autoPlayHandler);
+        document.addEventListener('touchstart', autoPlayHandler);
+
+        function manualPlay() { 
+            if (audio.currentTime < startTime) audio.currentTime = startTime;
+            audio.play().then(() => { statusText.innerText = "🎵 أمي جنة.. شغال"; });
+        }
+        function manualPause() { audio.pause(); statusText.innerText = "⏸ تم الإيقاف"; }
+
+        // كود تشغيل العداد المستمر وحساب الوقت الفعلي بناءً على طلبك
+        const baseDate = new Date();
+        baseDate.setFullYear(baseDate.getFullYear() - 15);
+        baseDate.setMonth(baseDate.getMonth() - 4);
+        baseDate.setDate(baseDate.getDate() - 8);
+        baseDate.setHours(baseDate.getHours());
+        baseDate.setMinutes(baseDate.getMinutes());
+        baseDate.setSeconds(baseDate.getSeconds() - 35);
+
+        function updateTimer() {
+            const now = new Date();
+            let diffInSeconds = Math.floor((now - baseDate) / 1000);
+
+            const years = Math.floor(diffInSeconds / (365 * 24 * 3600));
+            diffInSeconds %= (365 * 24 * 3600);
+
+            const months = Math.floor(diffInSeconds / (30 * 24 * 3600));
+            diffInSeconds %= (30 * 24 * 3600);
+
+            const days = Math.floor(diffInSeconds / (24 * 3600));
+            diffInSeconds %= (24 * 3600);
+
+            const hours = Math.floor(diffInSeconds / 3600);
+            diffInSeconds %= 3600;
+
+            const minutes = Math.floor(diffInSeconds / 60);
+            const seconds = diffInSeconds % 60;
+
+            document.getElementById('years').innerText = years;
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer(); 
+
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                const types = ['❤️', '💖', '💕', '✨'];
+                heart.innerHTML = types[Math.floor(Math.random() * types.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
+        }
+        window.onload = startHearts;
+    </script>
+</body>
+    </html>
