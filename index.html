@@ -12,7 +12,7 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a, #2c001e);
+            background: linear-gradient(135deg, #151515, #3a002c);
             color: #fff;
             display: flex;
             justify-content: center;
@@ -32,26 +32,26 @@
         }
         h1 {
             font-size: 2.5rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
             animation: fadeIn 2s ease-in-out;
         }
         .start-btn {
-            padding: 12px 40px;
-            font-size: 1.2rem;
+            padding: 14px 50px;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #fff;
             background: linear-gradient(45deg, #ff416c, #ff4b2b);
             border: none;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 75, 43, 0.5);
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .start-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
+            box-shadow: 0 6px 25px rgba(255, 75, 43, 0.7);
         }
-        /* الشاشة الثانية (مخفية في البداية) */
+        /* الشاشة الثانية */
         #content-screen {
             display: none;
             flex-direction: column;
@@ -62,11 +62,11 @@
             z-index: 10;
         }
         .img-container {
-            border: 4px solid #fff;
-            border-radius: 15px;
+            border: 5px solid #fff;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            max-width: 450px;
             width: 100%;
         }
         .img-container img {
@@ -75,18 +75,17 @@
             display: block;
         }
         h2 {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: #ff4b2b;
-            text-shadow: 0 0 8px rgba(255, 75, 43, 0.3);
+            text-shadow: 0 0 10px rgba(255, 75, 43, 0.4);
         }
-        /* تأثير القلوب المتساقطة */
+        /* تأثير القلوب المتساقطة الرومانسية */
         .heart {
             position: absolute;
             color: #ff416c;
-            font-size: 20px;
             animation: fall linear infinite;
             top: -10%;
-            opacity: 0.7;
+            opacity: 0.8;
             user-select: none;
             pointer-events: none;
         }
@@ -116,7 +115,7 @@
     <!-- الشاشة الثانية -->
     <div id="content-screen">
         <div class="img-container">
-            <!-- تم وضع اسم صورتك هنا مباشرة لتظهر فوراً -->
+            <!-- اسم صورتك المرفوعة تم وضعه هنا مباشرة -->
             <img src="1000093292.jpg" alt="العائلة الغالية">
         </div>
         <h2>ربنا يخليكم ليا ❤️</h2>
@@ -124,12 +123,12 @@
 
     <script>
         function showContent() {
-            // إخفاء الشاشة الأولى وإظهار الثانية
+            // التحول للشاشة الثانية عند الضغط على Start
             document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('content-screen').style.display = 'flex';
             
-            // تشغيل تأثير القلوب المتساقطة العاطفي بالخلفية
-            setInterval(createHeart, 300);
+            // تشغيل تأثير تساقط القلوب الجميلة في الخلفية
+            setInterval(createHeart, 250);
         }
 
         function createHeart() {
