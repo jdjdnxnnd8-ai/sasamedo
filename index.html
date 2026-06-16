@@ -1,282 +1,274 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أمي وأبي .. أغلى ما أملك ❤️</title>
-    <style>
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-        }
-        
-        html, body {
-            height: 100%;
-            width: 100%;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمي وأبي .. أغلى ما أملك ❤️</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #fff; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;
-            min-height: 100vh; 
-            padding: 20px; 
-            text-align: center; 
-            overflow-x: hidden; 
-            position: relative;
-            
-            /* خلفية احتياطية فخمة لضمان عدم حدوث شاشة سوداء أثناء تحميل صورتك */
-            background: linear-gradient(135deg, #1a0010, #2a0018);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* كود إجبار المتصفح على إظهار صورتك كخلفية كاملة ومثبتة فورا */
-        .bg-fixed-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('1000136325.jpg') !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-attachment: fixed !important;
-            background-repeat: no-repeat !important;
-        }
+body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    overflow-x:hidden;
+    position:relative;
+    text-align:center;
 
-        /* الحاوية الزجاجية الشفافة الأنيقة (نفس ستايل الموقع اللي بعته) */
-        .main-container {
-            max-width: 480px; 
-            width: 100%; 
-            z-index: 10; 
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            padding: 40px 25px; 
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); 
-        }
-        
-        h1 { 
-            font-size: 2.1rem; 
-            color: #fff; 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
-            margin-bottom: 25px; 
-        }
-        
-        .timer-title {
-            font-size: 1.1rem; 
-            color: #eee; 
-            margin-bottom: 15px;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-        }
-        
-        /* العداد المنسق */
-        .timer-container {
-            display: flex; 
-            justify-content: center; 
-            flex-wrap: wrap; 
-            gap: 8px; 
-            margin-bottom: 30px; 
-            direction: ltr;
-        }
-        .timer-box {
-            background: rgba(255, 255, 255, 0.1); 
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px 6px; 
-            border-radius: 14px; 
-            min-width: 65px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-        .timer-num {
-            font-size: 1.35rem; 
-            font-weight: bold; 
-            color: #fff; 
-        }
-        .timer-label {
-            font-size: 0.75rem; 
-            color: #ccc; 
-            margin-top: 4px; 
-            font-weight: bold;
-        }
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("family.jpg");
 
-        /* مشغل الصوت الشيك والمدمج بالتصميم */
-        .player-wrapper {
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        .music-btn {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            font-size: 1.4rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        .music-btn:active {
-            transform: scale(0.9);
-        }
-        
-        /* تأثير النبض والألوان المبهجة عند التشغيل الفعلي */
-        .playing {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border-color: transparent;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.4); }
-            70% { box-shadow: 0 0 0 12px rgba(255, 65, 108, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0); }
-        }
-        .status-tip {
-            font-size: 0.85rem;
-            color: #ddd;
-            font-weight: 500;
-        }
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
 
-        .text-love { 
-            font-size: 1.7rem; 
-            color: #ff9a9e; 
-            margin-bottom: 12px; 
-            font-weight: bold; 
-        }
-        .desc { 
-            font-size: 1.05rem; 
-            color: #e5e5e5; 
-            line-height: 1.6; 
-        }
-        
-        /* تأثير القلوب الطايرة ورا الحاوية الكبيرة */
-        .heart { 
-            position: absolute; 
-            animation: moveUp 6s linear infinite; 
-            bottom: -10%; 
-            opacity: 0.35; 
-            z-index: 1; 
-            pointer-events: none; 
-        }
-        @keyframes moveUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.35; }
-            100% { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
-        }
-    </style>
+.main-container{
+    max-width:480px;
+    width:100%;
+    z-index:10;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    padding:40px 25px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+h1{
+    font-size:2rem;
+    margin-bottom:25px;
+}
+
+.timer-title{
+    margin-bottom:15px;
+    color:#eee;
+}
+
+.timer-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    direction:ltr;
+    margin-bottom:30px;
+}
+
+.timer-box{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    padding:12px 6px;
+    border-radius:14px;
+    min-width:65px;
+}
+
+.timer-num{
+    font-size:1.3rem;
+    font-weight:bold;
+}
+
+.timer-label{
+    font-size:.75rem;
+    color:#ccc;
+}
+
+.player-wrapper{
+    margin-bottom:25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.music-btn{
+    width:58px;
+    height:58px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    font-size:1.4rem;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.music-btn:active{
+    transform:scale(.9);
+}
+
+.playing{
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(255,65,108,.4);}
+    70%{box-shadow:0 0 0 12px rgba(255,65,108,0);}
+    100%{box-shadow:0 0 0 0 rgba(255,65,108,0);}
+}
+
+.status-tip{
+    color:#ddd;
+    font-size:.9rem;
+}
+
+.text-love{
+    color:#ff9a9e;
+    margin-bottom:12px;
+}
+
+.desc{
+    line-height:1.7;
+    color:#eee;
+}
+
+.heart{
+    position:absolute;
+    bottom:-10%;
+    opacity:.35;
+    pointer-events:none;
+    animation:moveUp 6s linear infinite;
+}
+
+@keyframes moveUp{
+    from{
+        transform:translateY(0) rotate(0);
+        opacity:.35;
+    }
+    to{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- رابط الأغنية الأصلي المضمون 100% وبدون تشغيل تلقائي نهائياً عند اللمس -->
-    <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
+<audio id="audio-player"
+src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3"
+loop preload="auto"></audio>
 
-    <div class="main-container">
-        <h1>أمي وأبي أغلى ما ليا ❤️</h1>
+<div class="main-container">
 
-        <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
-        <div class="timer-container">
-            <div class="timer-box"><div class="timer-num" id="years">00</div><div class="timer-label">سنة</div></div>
-            <div class="timer-box"><div class="timer-num" id="months">00</div><div class="timer-label">شهر</div></div>
-            <div class="timer-box"><div class="timer-num" id="days">00</div><div class="timer-label">يوم</div></div>
-            <div class="timer-box"><div class="timer-num" id="hours">00</div><div class="timer-label">ساعة</div></div>
-            <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">دقيقة</div></div>
-            <div class="timer-box"><div class="timer-num" id="seconds">00</div><div class="timer-label">ثانية</div></div>
-        </div>
+<h1>أمي وأبي أغلى ما ليا ❤️</h1>
 
-        <!-- مشغل الصوت الشيك جداً - الضغط هنا فقط هو ما يشغل الأغنية -->
-        <div class="player-wrapper">
-            <button class="music-btn" id="play-btn" onclick="toggleMusic()">▶</button>
-            <span class="status-tip" id="status-text">اضغط هنا لتشغيل الأغنية 🎵</span>
-        </div>
+<div class="timer-title">
+كل ثانية وأنتم جنتي في الدنيا منذ:
+</div>
 
-        <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
-        <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
-    </div>
+<div class="timer-container">
+<div class="timer-box"><div id="years" class="timer-num">0</div><div class="timer-label">سنة</div></div>
+<div class="timer-box"><div id="days" class="timer-num">0</div><div class="timer-label">يوم</div></div>
+<div class="timer-box"><div id="hours" class="timer-num">0</div><div class="timer-label">ساعة</div></div>
+<div class="timer-box"><div id="minutes" class="timer-num">0</div><div class="timer-label">دقيقة</div></div>
+<div class="timer-box"><div id="seconds" class="timer-num">0</div><div class="timer-label">ثانية</div></div>
+</div>
 
-    <script>
-        const audio = document.getElementById('audio-player');
-        const playBtn = document.getElementById('play-btn');
-        const statusText = document.getElementById('status-text');
+<div class="player-wrapper">
+<button class="music-btn" id="play-btn">▶</button>
+<span id="status-text" class="status-tip">
+اضغط هنا لتشغيل الأغنية 🎵
+</span>
+</div>
 
-        // كود ذكي يضمن تطبيق وظهور صورتك كخلفية أول ما المتصفح يلمحها
-        const imgTracker = new Image();
-        imgTracker.src = '1000136325.jpg';
-        imgTracker.onload = function() {
-            document.body.classList.add('bg-fixed-image');
-        };
-        // محاولة إضافية سريعة لتطبيقها في كل الأحوال
-        document.body.classList.add('bg-fixed-image');
+<h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
 
-        // وظيفة الزرار: تشغيل وإيقاف حقيقي معتمد على ضغطتك أنت فقط
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    playBtn.innerHTML = "⏸";
-                    playBtn.classList.add('playing');
-                    statusText.innerText = "الأغنية تعمل الآن بنجاح ✨";
-                }).catch(err => {
-                    statusText.innerText = "برجاء الضغط مرة أخرى للتشغيل 🎵";
-                });
-            } else {
-                audio.pause();
-                playBtn.innerHTML = "▶";
-                playBtn.classList.remove('playing');
-                statusText.innerText = "تم إيقاف الأغنية مؤقتاً";
-            }
-        }
+<p class="desc">
+لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا.
+حفظكم الله لي وأدام ضحكتكم تنير حياتي.
+</p>
 
-        // كود العداد الزمني الحقيقي الثابت
-        function updateTimer() {
-            const now = new Date();
-            let years = now.getFullYear() - 2011;
-            let months = now.getMonth() - 1; 
-            let days = now.getDate() - 8;
-            let hours = now.getHours() - 15;
-            let minutes = now.getMinutes() - 8;
-            let seconds = now.getSeconds() - 50;
-            
-            if (seconds < 0) { seconds += 60; minutes--; }
-            if (minutes < 0) { minutes += 60; hours--; }
-            if (hours < 0) { hours += 24; days--; }
-            if (days < 0) {
-                const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-                days += prevMonthDays;
-                months--;
-            }
-            if (months < 0) { months += 12; years--; }
-            
-            document.getElementById('years').innerText = years;
-            document.getElementById('months').innerText = months;
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = hours;
-            document.getElementById('minutes').innerText = minutes;
-            document.getElementById('seconds').innerText = seconds;
-        }
+</div>
 
-        setInterval(updateTimer, 1000);
-        updateTimer(); 
+<script>
+const audio = document.getElementById('audio-player');
+const playBtn = document.getElementById('play-btn');
+const statusText = document.getElementById('status-text');
 
-        // قلوب ناعمة تتطاير خلف الصندوق الزجاجي
-        setInterval(() => {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            const types = ['❤️', '💖', '💕', '✨'];
-            heart.innerHTML = types[Math.floor(Math.random() * types.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }, 400);
-    </script>
+audio.addEventListener('error',()=>{
+    statusText.innerText="تعذر تحميل الأغنية.";
+});
+
+playBtn.addEventListener('click',toggleMusic);
+
+function toggleMusic(){
+    if(audio.paused){
+        audio.play()
+        .then(()=>{
+            playBtn.innerHTML="⏸";
+            playBtn.classList.add('playing');
+            statusText.innerText="الأغنية تعمل الآن ✨";
+        })
+        .catch(()=>{
+            statusText.innerText="تعذر تشغيل الأغنية.";
+        });
+    }else{
+        audio.pause();
+        playBtn.innerHTML="▶";
+        playBtn.classList.remove('playing');
+        statusText.innerText="تم إيقاف الأغنية مؤقتاً";
+    }
+}
+
+function updateTimer(){
+    const start=new Date('2011-02-08T15:08:50');
+    const now=new Date();
+
+    let diff=Math.floor((now-start)/1000);
+
+    const years=Math.floor(diff/(365.25*24*3600));
+    diff-=Math.floor(years*365.25*24*3600);
+
+    const days=Math.floor(diff/(24*3600));
+    diff%=24*3600;
+
+    const hours=Math.floor(diff/3600);
+    diff%=3600;
+
+    const minutes=Math.floor(diff/60);
+    const seconds=diff%60;
+
+    document.getElementById('years').innerText=years;
+    document.getElementById('days').innerText=days;
+    document.getElementById('hours').innerText=hours;
+    document.getElementById('minutes').innerText=minutes;
+    document.getElementById('seconds').innerText=seconds;
+}
+
+updateTimer();
+setInterval(updateTimer,1000);
+
+setInterval(()=>{
+    const heart=document.createElement('div');
+    heart.className='heart';
+
+    const icons=['❤️','💖','💕','✨'];
+    heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+
+    heart.style.left=Math.random()*100+'vw';
+    heart.style.fontSize=(Math.random()*10+15)+'px';
+    heart.style.animationDuration=(Math.random()*3+4)+'s';
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000);
+
+},700);
+</script>
+
 </body>
 </html>
