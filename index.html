@@ -42,7 +42,11 @@
 </head>
 <body>
 
-    <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
+    <audio id="audio-player" loop preload="auto">
+        <source src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" type="audio/mp3">
+        <source src="https://archive.org/download/omy-ganna-sultan/omy-ganna.mp3" type="audio/mp3">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
 
     <div class="audio-controls">
         <span class="status-text" id="music-status">الموسيقى جاهزة..</span>
@@ -53,7 +57,7 @@
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
         <div class="img-box">
-            <img src="1000093292.jpg" alt="أمي وأبي الغاليين">
+            <img src="1000093292.jpg" alt="أمي وأبي الغاليين" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500&auto=format&fit=crop'">
         </div>
         <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
         <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
@@ -63,7 +67,6 @@
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
 
-        // ميزة التشغيل التلقائي الذكي فور لمس الشاشة في أي مكان
         function autoPlayHandler() {
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
@@ -79,7 +82,7 @@
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
             }).catch(err => {
-                statusText.innerText = "❌ اضغط مجدداً للتشغيل";
+                statusText.innerText = "❌ اضغط مجدداً";
             });
         }
         function manualPause() { audio.pause(); statusText.innerText = "⏸ تم الإيقاف"; }
