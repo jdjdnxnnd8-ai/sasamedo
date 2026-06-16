@@ -42,7 +42,7 @@
 </head>
 <body>
 
-    <audio id="audio-player" src="https://f.top4top.io/m_311186b591.mp3" loop preload="auto"></audio>
+    <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
         <span class="status-text" id="music-status">الموسيقى جاهزة..</span>
@@ -53,7 +53,7 @@
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
         <div class="img-box">
-            <img src="https://l.top4top.io/p_31116oocn1.jpg" alt="أمي وأبي الغاليين">
+            <img src="1000093292.jpg" alt="أمي وأبي الغاليين">
         </div>
         <h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
         <p class="desc">لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا. حفظكم الله لي وأدام ضحكتكم تنير حياتي.</p>
@@ -63,13 +63,13 @@
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
 
-        // محاولة التشغيل التلقائي بمجرد لمس الشاشة
+        // ميزة التشغيل التلقائي الذكي فور لمس الشاشة في أي مكان
         function autoPlayHandler() {
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
                 document.removeEventListener('click', autoPlayHandler);
                 document.removeEventListener('touchstart', autoPlayHandler);
-            }).catch(e => console.log("بانتظار اللمس..."));
+            }).catch(e => console.log("في انتظار اللمس..."));
         }
 
         document.addEventListener('click', autoPlayHandler);
@@ -79,7 +79,7 @@
             audio.play().then(() => {
                 statusText.innerText = "🎵 أمي جنة.. شغال";
             }).catch(err => {
-                statusText.innerText = "❌ اضغط مجدداً";
+                statusText.innerText = "❌ اضغط مجدداً للتشغيل";
             });
         }
         function manualPause() { audio.pause(); statusText.innerText = "⏸ تم الإيقاف"; }
