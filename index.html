@@ -30,10 +30,9 @@
             border: 2px solid rgba(255, 192, 203, 0.3); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin-top: 60px;
         }
         h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px rgba(255, 65, 108, 0.7); margin-bottom: 25px; }
-        .img-box { border-radius: 20px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px; background: #222; }
+        .img-box { border-radius: 20px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 25px; background: #222; min-height: 250px; display: flex; align-items: center; justify-content: center; }
         .img-box img { width: 100%; height: auto; display: block; }
         
-        /* تصميم العداد الزمني الرقمي المتكامل */
         .timer-title {
             font-size: 1.1rem; color: #fff; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px rgba(255,255,255,0.5);
         }
@@ -62,7 +61,6 @@
 </head>
 <body>
 
-    <!-- رابط ملف الصوت الأصلي -->
     <audio id="audio-player" src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3" loop preload="auto"></audio>
 
     <div class="audio-controls">
@@ -75,11 +73,10 @@
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
         
         <div class="img-box">
-            <!-- مسار صورتك المستهدفة -->
-            <img src="1000136325.jpg" alt="أمي وأبي الغاليين" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500&auto=format&fit=crop'">
+            <!-- تم توجيه المسار بدقة لصورتك لتجنب الخطأ الموضح في الصورة 1000136330.jpg -->
+            <img src="1000136325.jpg" alt="أمي وأبي الغاليين">
         </div>
 
-        <!-- لوحة العداد الرقمي المحدث باستمرار -->
         <div class="timer-title">كل ثانية وأنتم جنتي في الدنيا منذ:</div>
         <div class="timer-container">
             <div class="timer-box"><div class="timer-num" id="seconds">35</div><div class="timer-label">ثانية</div></div>
@@ -97,29 +94,36 @@
     <script>
         const audio = document.getElementById('audio-player');
         const statusText = document.getElementById('music-status');
-        
-        // نقطة انطلاق الصوت عند كلمة "أمي جنة" (الثانية 18)
-        const skipToTime = 18; 
+        let skipped = false;
 
-        function playAudioAndSkip() {
+        // طريقة تشغيل ذكية: نشغل الصوت أولاً، وعند أول استجابة فعلية نقفز للثانية 18 لتفادي حظر المتصفحات
+        function safePlay() {
             audio.play().then(() => {
-                audio.currentTime = skipToTime; 
                 statusText.innerText = "🎵 أمي جنة.. شغال";
-            }).catch(e => console.log("بانتظار تفاعل المستخدم لبدء الصوت"));
+            }).catch(err => {
+                console.log("في انتظار تفاعل المستخدم");
+            });
         }
 
+        // الاستماع لحدث بدء تشغيل الصوت الفعلي للقفز الفوري
+        audio.addEventListener('playing', () => {
+            if (!skipped) {
+                audio.currentTime = 18;
+                skipped = true;
+            }
+        });
+
         function autoPlayHandler() {
-            playAudioAndSkip();
+            safePlay();
             document.removeEventListener('click', autoPlayHandler);
             document.removeEventListener('touchstart', autoPlayHandler);
         }
 
-        // الاستماع لأول لمسة على الشاشة لبدء تشغيل الصوت المقصوص تلقائياً
         document.addEventListener('click', autoPlayHandler);
         document.addEventListener('touchstart', autoPlayHandler);
 
-        function manualPlay() { 
-            playAudioAndSkip();
+        function manualPlay() {
+            safePlay();
         }
         
         function manualPause() { 
@@ -127,11 +131,10 @@
             statusText.innerText = "⏸ تم الإيقاف"; 
         }
 
-        // حساب العداد التصاعدي ليعكس دائماً (15 سنة، 4 شهور، 8 أيام، و35 ثانية) بشكل متزايد ومستمر
+        // العداد الرقمي المطور والمبني على فارق زمني حقيقي ثابت وثواني تتحرك
         function updateTimer() {
             const now = new Date();
             
-            // تاريخ مرجعي بالماضي ليعطي الحساب المطلوب بدقة تامة طبقاً لتوثيق اللحظة الحالية
             let years = now.getFullYear() - 2011;
             let months = now.getMonth() - 1; 
             let days = now.getDate() - 8;
@@ -139,7 +142,6 @@
             let minutes = now.getMinutes() - 8;
             let seconds = now.getSeconds() - 50;
             
-            // معالجة الفروق الحسابية لتجنب القيم السالبة أثناء حركة الثواني والدقائق
             if (seconds < 0) { seconds += 60; minutes--; }
             if (minutes < 0) { minutes += 60; hours--; }
             if (hours < 0) { hours += 24; days--; }
@@ -150,7 +152,6 @@
             }
             if (months < 0) { months += 12; years--; }
             
-            // حقن الأرقام داخل مربعات العداد بالصفحة
             document.getElementById('years').innerText = years;
             document.getElementById('months').innerText = months;
             document.getElementById('days').innerText = days;
@@ -159,11 +160,9 @@
             document.getElementById('seconds').innerText = seconds;
         }
 
-        // تحديث العداد دورياً كل ثانية (1000 مللي ثانية)
         setInterval(updateTimer, 1000);
         updateTimer(); 
 
-        // تأثير القلوب المتطايرة في الخلفية
         function startHearts() {
             setInterval(() => {
                 const heart = document.createElement('div');
