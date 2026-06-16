@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أغلى ما أملك ❤️</title>
+    <title>أمي وأبي .. أغلى ما أملك ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -21,32 +21,71 @@
             min-height: 100vh;
             padding: 20px;
             text-align: center;
-            position: relative;
             overflow-x: hidden;
+            position: relative;
         }
+        /* لوحة التحكم في الموسيقى علوية وأنيقة */
+        .audio-controls {
+            position: fixed;
+            top: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .control-btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            color: white;
+            padding: 6px 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+        .pause-btn {
+            background: #555;
+        }
+        .status-text {
+            font-size: 0.85rem;
+            color: #ffb3d1;
+            font-style: italic;
+        }
+        /* الحاوية الرئيسية للموقع */
         .main-container {
             max-width: 450px;
             width: 100%;
             z-index: 10;
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(10px);
-            padding: 25px;
+            padding: 30px 25px;
             border-radius: 30px;
             border: 2px solid rgba(255, 192, 203, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            margin-top: 60px;
         }
         h1 {
             font-size: 2.2rem;
             color: #fff;
             text-shadow: 0 0 15px rgba(255, 65, 108, 0.7);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .img-box {
             border-radius: 20px;
             overflow: hidden;
             border: 3px solid #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
             background: #222;
         }
         .img-box img {
@@ -54,34 +93,19 @@
             height: auto;
             display: block;
         }
-        .music-btn {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
-            margin-bottom: 20px;
-            transition: transform 0.2s;
-        }
-        .music-btn:active {
-            transform: scale(0.95);
-        }
         .text-love {
             font-size: 1.8rem;
             color: #ff9a9e;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 154, 158, 0.3);
         }
         .desc {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: #e0e0e0;
             line-height: 1.6;
         }
-        /* تأثير القلوب */
+        /* تأثير القلوب المتساقطة الرومانسية */
         .heart {
             position: absolute;
             animation: moveUp 5s linear infinite;
@@ -99,17 +123,18 @@
 </head>
 <body>
 
-    <!-- الأغنية المباشرة -->
     <audio id="audio-player" src="https://archive.org/download/omy-ganna-sultan/omy-ganna.mp3" loop></audio>
+
+    <div class="audio-controls">
+        <span class="status-text" id="music-status">الموسيقى جاهزة..</span>
+        <button class="control-btn" onclick="manualPlay()">▶ تشغيل</button>
+        <button class="control-btn pause-btn" onclick="manualPause()">⏸ إيقاف</button>
+    </div>
 
     <div class="main-container">
         <h1>أمي وأبي أغلى ما ليا ❤️</h1>
-        
-        <!-- زر لتشغيل الأغنية مباشرة وتجنب قيود المتصفح -->
-        <button class="music-btn" onclick="playMusic()">🎵 تشغيل أغنية أمي جنة 🎵</button>
 
         <div class="img-box">
-            <!-- استدعاء الصورة المباشرة بحروف صغيرة كاملاً للامتثال للملف المرفوع -->
             <img src="1000093292.jpg" alt="أمي وأبي الغاليين">
         </div>
 
@@ -118,13 +143,37 @@
     </div>
 
     <script>
-        // تشغيل الموسيقى عند ضغط الزر الصريح لضمان كسر حماية المتصفح
-        function playMusic() {
-            const audio = document.getElementById('audio-player');
-            audio.play().catch(e => alert("اضغط مرة أخرى للتشغيل"));
+        const audio = document.getElementById('audio-player');
+        const statusText = document.getElementById('music-status');
+
+        // خدعة التشغيل التلقائي: بمجرد لمس الشاشة أو الضغط في أي مكان تعمل الأغنية فوراً
+        function autoPlayHandler() {
+            audio.play().then(() => {
+                statusText.innerText = "🎵 أمي جنة.. شغال";
+                // حذف المستمعين بعد التشغيل الناجح لتجنب تكرار الكود
+                document.removeEventListener('click', autoPlayHandler);
+                document.removeEventListener('touchstart', autoPlayHandler);
+            }).catch(e => {
+                console.log("في انتظار تفاعل المستخدم أولاً...");
+            });
         }
 
-        // إنشاء تأثير القلوب الصاعدة تلقائياً عند فتح الصفحة
+        // الاستماع لأي لمسة أو ضغطة في الصفحة لتشغيل الصوت تلقائياً
+        document.addEventListener('click', autoPlayHandler);
+        document.addEventListener('touchstart', autoPlayHandler);
+
+        // وظائف الأزرار العلوية للتحكم اليدوي الكامل
+        function manualPlay() {
+            audio.play();
+            statusText.innerText = "🎵 أمي جنة.. شغال";
+        }
+
+        function manualPause() {
+            audio.pause();
+            statusText.innerText = "⏸ تم الإيقاف مؤقتاً";
+        }
+
+        // كود تأثير القلوب المتساقطة المبهج
         function startHearts() {
             setInterval(() => {
                 const heart = document.createElement('div');
@@ -138,7 +187,7 @@
                 setTimeout(() => heart.remove(), 5000);
             }, 300);
         }
-        
+
         window.onload = startHearts;
     </script>
 </body>
