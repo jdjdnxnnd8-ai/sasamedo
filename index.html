@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجتمع منتصر</title>
     <style>
-        /* تنسيقات عامة للموقع */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
             background-color: #0b0c10;
             color: #ffffff;
-            overflow-x: hidden;
             text-align: center;
+            overflow-x: hidden;
         }
 
-        /* واجهة الدخول الأولى */
+        /* الستار الأول */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -29,73 +28,53 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s;
+            transition: opacity 0.5s ease, visibility 0.5s;
         }
 
         #welcome-screen h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: #66fcf1;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+            margin-bottom: 25px;
         }
 
         .start-btn {
-            padding: 15px 40px;
-            font-size: 1.5rem;
+            padding: 15px 50px;
+            font-size: 1.6rem;
             font-weight: bold;
             color: #0b0c10;
             background-color: #66fcf1;
             border: none;
-            border-radius: 30px;
+            border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(102, 252, 241, 0.4);
-            transition: all 0.3s ease;
         }
 
-        .start-btn:hover {
-            background-color: #45f3e7;
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(102, 252, 241, 0.6);
-        }
-
-        /* الموقع الثاني (المحتوى الرئيسي) */
+        /* الواجهة الثانية */
         #main-content {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1s ease;
+            display: none;
             padding: 40px 20px;
             min-height: 100vh;
             box-sizing: border-box;
         }
 
-        /* النمط النشط لإظهار المحتوى */
-        #main-content.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
         .top-title {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             color: #ff0055;
-            text-shadow: 0 0 15px rgba(255, 0, 85, 0.6);
-            margin-top: 20px;
-            margin-bottom: 30px;
+            margin-top: 30px;
         }
 
-        /* مشغل الموسيقى */
         .audio-container {
-            background: rgba(31, 40, 51, 0.8);
+            background: rgba(31, 40, 51, 0.9);
             border: 2px solid #ff0055;
-            border-radius: 15px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 20px;
             max-width: 400px;
-            margin: 0 auto 50px auto;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+            margin: 40px auto;
         }
 
         .audio-container p {
             margin-top: 0;
-            color: #c5a059; /* لون ذهبي يليق باللحن */
+            color: #c5a059;
             font-weight: bold;
         }
 
@@ -104,53 +83,30 @@
         }
 
         .sub-title {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             color: #45f3e7;
-            margin-top: 60px;
-            text-shadow: 0 0 10px rgba(69, 243, 231, 0.4);
-        }
-
-        /* تأثيرات جمالية للخلفية */
-        .background-glow {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 0, 85, 0.1) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            pointer-events: none;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
-    <!-- الأغنية (العدل فوق الجميع) -->
-    <!-- ملاحظة: تم وضع رابط يعمل للأغنية من أرشيف الإنترنت، يمكنك استبداله برابط مباشر آخر إذا أردت -->
-    <audio id="bg-track" loop>
-        <source src="https://ia600204.us.archive.org/12/items/el-adl-fawk-el-gami3/%D8%A7%D9%84%D8%B9%D8%AF%D9%84%20%D9%81%D9%88%D9%82%20%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D8%B9.mp3" type="audio/mpeg">
-        متصفحك لا يدعم مشغل الصوت.
-    </audio>
-
     <!-- واجهة الدخول الأولى -->
     <div id="welcome-screen">
         <h1>انضم إلي مجتمع منتصر</h1>
-        <button class="start-btn" onclick="startExperience()">استارت</button>
+        <button class="start-btn" onclick="bypassAndPlay()">استارت</button>
     </div>
 
-    <!-- الموقع الثاني (المحتوى الذي يظهر بعد الضغط) -->
+    <!-- الموقع الثاني -->
     <div id="main-content">
-        <div class="background-glow"></div>
-        
         <h1 class="top-title">سفاح الاندر ايدج</h1>
         
-        <!-- مشغل الصوت فوق النص الثاني -->
         <div class="audio-container">
-            <p>🎵 مشغل الآن: العدل فوق الجميع (سفاح الجيزة)</p>
-            <!-- أزرار التحكم تظهر هنا للمستخدم ليتحكم بالصوت إذا أراد -->
-            <audio controls id="visible-controls">
-                <source src="https://ia600204.us.archive.org/12/items/el-adl-fawk-el-gami3/%D8%A7%D9%84%D8%B9%D8%AF%D9%84%20%D9%81%D9%88%D9%82%20%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D8%B9.mp3" type="audio/mpeg">
+            <p>🎵 مشغل الآن: العدل فوق الجميع</p>
+            <!-- الاعتماد على مسار محلي لتخطي الـ CORS وسياسات الحجب للروابط الخارجية -->
+            <audio id="target-audio" controls loop>
+                <source src="audio.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
             </audio>
         </div>
 
@@ -158,28 +114,19 @@
     </div>
 
     <script>
-        function startExperience() {
-            var audio = document.getElementById("bg-track");
-            var visibleAudio = document.getElementById("visible-controls");
+        function bypassAndPlay() {
+            var audio = document.getElementById("target-audio");
             
-            // تشغيل الأغنية فوراً
-            audio.play().catch(function(error) {
-                console.log("تم حجب التشغيل التلقائي مؤقتاً: " + error);
+            // التشغيل يتم عبر الـ Interaction Event مباشرة لتجاوز الـ Autoplay Restriction
+            audio.play().then(() => {
+                console.log("Audio payload executed successfully.");
+            }).catch((err) => {
+                console.error("Playback prevented: ", err);
             });
 
-            // مزامنة التحكم المرئي مع الأغنية التي تعمل
-            visibleAudio.volume = 0.8;
-            visibleAudio.play();
-            audio.pause(); // نكتفي بمشغل واحد يعمل حتى لا يتكرر الصوت
-
-            // إخفاء واجهة الترحيب
-            var welcomeScreen = document.getElementById("welcome-screen");
-            welcomeScreen.style.opacity = "0";
-            welcomeScreen.style.visibility = "hidden";
-
-            // إظهار الموقع الثاني
-            var mainContent = document.getElementById("main-content");
-            mainContent.classList.add("active");
+            // إخفاء الواجهة الأولى وإظهار المحتوى فوراً
+            document.getElementById("welcome-screen").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
         }
     </script>
 </body>
