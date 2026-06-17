@@ -1,274 +1,186 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أمي وأبي .. أغلى ما أملك ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجتمع منتصر</title>
+    <style>
+        /* تنسيقات عامة للموقع */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0c10;
+            color: #ffffff;
+            overflow-x: hidden;
+            text-align: center;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        /* واجهة الدخول الأولى */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1f2833, #0b0c10);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
 
-body{
-    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-    color:#fff;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    overflow-x:hidden;
-    position:relative;
-    text-align:center;
+        #welcome-screen h1 {
+            font-size: 3rem;
+            color: #66fcf1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+        }
 
-    background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url("family.jpg");
+        .start-btn {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0b0c10;
+            background-color: #66fcf1;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 252, 241, 0.4);
+            transition: all 0.3s ease;
+        }
 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
+        .start-btn:hover {
+            background-color: #45f3e7;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 252, 241, 0.6);
+        }
 
-.main-container{
-    max-width:480px;
-    width:100%;
-    z-index:10;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-    padding:40px 25px;
-    border-radius:24px;
-    border:1px solid rgba(255,255,255,0.15);
-    box-shadow:0 20px 40px rgba(0,0,0,0.5);
-}
+        /* الموقع الثاني (المحتوى الرئيسي) */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease;
+            padding: 40px 20px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
 
-h1{
-    font-size:2rem;
-    margin-bottom:25px;
-}
+        /* النمط النشط لإظهار المحتوى */
+        #main-content.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-.timer-title{
-    margin-bottom:15px;
-    color:#eee;
-}
+        .top-title {
+            font-size: 3.5rem;
+            color: #ff0055;
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.6);
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
 
-.timer-container{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:8px;
-    direction:ltr;
-    margin-bottom:30px;
-}
+        /* مشغل الموسيقى */
+        .audio-container {
+            background: rgba(31, 40, 51, 0.8);
+            border: 2px solid #ff0055;
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 400px;
+            margin: 0 auto 50px auto;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+        }
 
-.timer-box{
-    background:rgba(255,255,255,.1);
-    border:1px solid rgba(255,255,255,.2);
-    padding:12px 6px;
-    border-radius:14px;
-    min-width:65px;
-}
+        .audio-container p {
+            margin-top: 0;
+            color: #c5a059; /* لون ذهبي يليق باللحن */
+            font-weight: bold;
+        }
 
-.timer-num{
-    font-size:1.3rem;
-    font-weight:bold;
-}
+        audio {
+            width: 100%;
+        }
 
-.timer-label{
-    font-size:.75rem;
-    color:#ccc;
-}
+        .sub-title {
+            font-size: 2.5rem;
+            color: #45f3e7;
+            margin-top: 60px;
+            text-shadow: 0 0 10px rgba(69, 243, 231, 0.4);
+        }
 
-.player-wrapper{
-    margin-bottom:25px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-}
-
-.music-btn{
-    width:58px;
-    height:58px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.15);
-    color:#fff;
-    font-size:1.4rem;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.music-btn:active{
-    transform:scale(.9);
-}
-
-.playing{
-    background:linear-gradient(45deg,#ff416c,#ff4b2b);
-    animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(255,65,108,.4);}
-    70%{box-shadow:0 0 0 12px rgba(255,65,108,0);}
-    100%{box-shadow:0 0 0 0 rgba(255,65,108,0);}
-}
-
-.status-tip{
-    color:#ddd;
-    font-size:.9rem;
-}
-
-.text-love{
-    color:#ff9a9e;
-    margin-bottom:12px;
-}
-
-.desc{
-    line-height:1.7;
-    color:#eee;
-}
-
-.heart{
-    position:absolute;
-    bottom:-10%;
-    opacity:.35;
-    pointer-events:none;
-    animation:moveUp 6s linear infinite;
-}
-
-@keyframes moveUp{
-    from{
-        transform:translateY(0) rotate(0);
-        opacity:.35;
-    }
-    to{
-        transform:translateY(-115vh) rotate(360deg);
-        opacity:0;
-    }
-}
-</style>
+        /* تأثيرات جمالية للخلفية */
+        .background-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 0, 85, 0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
 </head>
-
 <body>
 
-<audio id="audio-player"
-src="https://raw.githubusercontent.com/MuhammedErdoğan/MomParadise/main/omy-ganna.mp3"
-loop preload="auto"></audio>
+    <!-- الأغنية (العدل فوق الجميع) -->
+    <!-- ملاحظة: تم وضع رابط يعمل للأغنية من أرشيف الإنترنت، يمكنك استبداله برابط مباشر آخر إذا أردت -->
+    <audio id="bg-track" loop>
+        <source src="https://ia600204.us.archive.org/12/items/el-adl-fawk-el-gami3/%D8%A7%D9%84%D8%B9%D8%AF%D9%84%20%D9%81%D9%88%D9%82%20%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D8%B9.mp3" type="audio/mpeg">
+        متصفحك لا يدعم مشغل الصوت.
+    </audio>
 
-<div class="main-container">
+    <!-- واجهة الدخول الأولى -->
+    <div id="welcome-screen">
+        <h1>انضم إلي مجتمع منتصر</h1>
+        <button class="start-btn" onclick="startExperience()">استارت</button>
+    </div>
 
-<h1>أمي وأبي أغلى ما ليا ❤️</h1>
+    <!-- الموقع الثاني (المحتوى الذي يظهر بعد الضغط) -->
+    <div id="main-content">
+        <div class="background-glow"></div>
+        
+        <h1 class="top-title">سفاح الاندر ايدج</h1>
+        
+        <!-- مشغل الصوت فوق النص الثاني -->
+        <div class="audio-container">
+            <p>🎵 مشغل الآن: العدل فوق الجميع (سفاح الجيزة)</p>
+            <!-- أزرار التحكم تظهر هنا للمستخدم ليتحكم بالصوت إذا أراد -->
+            <audio controls id="visible-controls">
+                <source src="https://ia600204.us.archive.org/12/items/el-adl-fawk-el-gami3/%D8%A7%D9%84%D8%B9%D8%AF%D9%84%20%D9%81%D9%88%D9%82%20%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D8%B9.mp3" type="audio/mpeg">
+            </audio>
+        </div>
 
-<div class="timer-title">
-كل ثانية وأنتم جنتي في الدنيا منذ:
-</div>
+        <h2 class="sub-title">سفاح مدرسة علاء الدين</h2>
+    </div>
 
-<div class="timer-container">
-<div class="timer-box"><div id="years" class="timer-num">0</div><div class="timer-label">سنة</div></div>
-<div class="timer-box"><div id="days" class="timer-num">0</div><div class="timer-label">يوم</div></div>
-<div class="timer-box"><div id="hours" class="timer-num">0</div><div class="timer-label">ساعة</div></div>
-<div class="timer-box"><div id="minutes" class="timer-num">0</div><div class="timer-label">دقيقة</div></div>
-<div class="timer-box"><div id="seconds" class="timer-num">0</div><div class="timer-label">ثانية</div></div>
-</div>
+    <script>
+        function startExperience() {
+            var audio = document.getElementById("bg-track");
+            var visibleAudio = document.getElementById("visible-controls");
+            
+            // تشغيل الأغنية فوراً
+            audio.play().catch(function(error) {
+                console.log("تم حجب التشغيل التلقائي مؤقتاً: " + error);
+            });
 
-<div class="player-wrapper">
-<button class="music-btn" id="play-btn">▶</button>
-<span id="status-text" class="status-tip">
-اضغط هنا لتشغيل الأغنية 🎵
-</span>
-</div>
+            // مزامنة التحكم المرئي مع الأغنية التي تعمل
+            visibleAudio.volume = 0.8;
+            visibleAudio.play();
+            audio.pause(); // نكتفي بمشغل واحد يعمل حتى لا يتكرر الصوت
 
-<h2 class="text-love">ربنا يخليكم ليا ❤️</h2>
+            // إخفاء واجهة الترحيب
+            var welcomeScreen = document.getElementById("welcome-screen");
+            welcomeScreen.style.opacity = "0";
+            welcomeScreen.style.visibility = "hidden";
 
-<p class="desc">
-لو جمعت كلمات الشكر والامتنان من كل العالم، لن توفي حقكم يا جنتي في الدنيا.
-حفظكم الله لي وأدام ضحكتكم تنير حياتي.
-</p>
-
-</div>
-
-<script>
-const audio = document.getElementById('audio-player');
-const playBtn = document.getElementById('play-btn');
-const statusText = document.getElementById('status-text');
-
-audio.addEventListener('error',()=>{
-    statusText.innerText="تعذر تحميل الأغنية.";
-});
-
-playBtn.addEventListener('click',toggleMusic);
-
-function toggleMusic(){
-    if(audio.paused){
-        audio.play()
-        .then(()=>{
-            playBtn.innerHTML="⏸";
-            playBtn.classList.add('playing');
-            statusText.innerText="الأغنية تعمل الآن ✨";
-        })
-        .catch(()=>{
-            statusText.innerText="تعذر تشغيل الأغنية.";
-        });
-    }else{
-        audio.pause();
-        playBtn.innerHTML="▶";
-        playBtn.classList.remove('playing');
-        statusText.innerText="تم إيقاف الأغنية مؤقتاً";
-    }
-}
-
-function updateTimer(){
-    const start=new Date('2011-02-08T15:08:50');
-    const now=new Date();
-
-    let diff=Math.floor((now-start)/1000);
-
-    const years=Math.floor(diff/(365.25*24*3600));
-    diff-=Math.floor(years*365.25*24*3600);
-
-    const days=Math.floor(diff/(24*3600));
-    diff%=24*3600;
-
-    const hours=Math.floor(diff/3600);
-    diff%=3600;
-
-    const minutes=Math.floor(diff/60);
-    const seconds=diff%60;
-
-    document.getElementById('years').innerText=years;
-    document.getElementById('days').innerText=days;
-    document.getElementById('hours').innerText=hours;
-    document.getElementById('minutes').innerText=minutes;
-    document.getElementById('seconds').innerText=seconds;
-}
-
-updateTimer();
-setInterval(updateTimer,1000);
-
-setInterval(()=>{
-    const heart=document.createElement('div');
-    heart.className='heart';
-
-    const icons=['❤️','💖','💕','✨'];
-    heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
-
-    heart.style.left=Math.random()*100+'vw';
-    heart.style.fontSize=(Math.random()*10+15)+'px';
-    heart.style.animationDuration=(Math.random()*3+4)+'s';
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },6000);
-
-},700);
-</script>
-
+            // إظهار الموقع الثاني
+            var mainContent = document.getElementById("main-content");
+            mainContent.classList.add("active");
+        }
+    </script>
 </body>
 </html>
