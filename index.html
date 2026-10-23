@@ -38,7 +38,7 @@ body {
     padding-bottom: 90px;
 }
 
-/* شاشة تسجيل الدخول */
+/* شاشة تسجيل الدخول المطورة */
 #loginOverlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -52,16 +52,17 @@ body {
 .login-card {
     background: var(--card-bg);
     border: 2px solid var(--border-color);
-    padding: 30px 25px;
+    padding: 30px 22px;
     border-radius: 20px;
-    width: 88%;
+    width: 90%;
     max-width: 380px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .login-card h2 { color: var(--card-green); margin-bottom: 6px; font-size: 1.8em; }
-.login-card p { color: var(--text-muted); font-size: 0.88em; margin-bottom: 18px; }
+.login-card p { color: var(--text-muted); font-size: 0.85em; margin-bottom: 15px; }
+
 .login-card input {
     width: 100%; padding: 11px; margin: 6px 0;
     background: #f8fafc; border: 1px solid var(--border-color);
@@ -71,9 +72,28 @@ body {
 .btn-main {
     width: 100%; padding: 12px; background: var(--card-green); color: #ffffff;
     border: none; border-radius: 10px; font-size: 0.95em; font-weight: bold;
-    cursor: pointer; margin-top: 10px; transition: 0.2s;
+    cursor: pointer; margin-top: 8px; transition: 0.2s;
 }
 .btn-main:hover { background: var(--card-green-light); }
+
+/* زر تسجيل جوجل */
+.btn-google {
+    width: 100%; padding: 12px; background: #ffffff; color: #334155;
+    border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.95em; font-weight: bold;
+    cursor: pointer; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: 0.2s;
+}
+.btn-google:hover { background: #f1f5f9; }
+
+.divider {
+    display: flex; align-items: center; text-align: center; color: var(--text-muted);
+    font-size: 0.8rem; margin: 12px 0;
+}
+.divider::before, .divider::after {
+    content: ''; flex: 1; border-bottom: 1px solid #cbd5e1;
+}
+.divider::before { margin-left: 8px; }
+.divider::after { margin-right: 8px; }
 
 header {
     width: 100%;
@@ -121,7 +141,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     cursor: pointer;
 }
 
-/* الأقسام الشبكية (تم جعلها 6 أقسام رئيسية بعد حذف المكتبة والتحفيظ) */
+/* الأقسام الشبكية */
 .section-title { font-size: 1rem; color: var(--card-green); margin: 12px 0 8px 0; font-weight: bold; }
 .grid-container {
     display: grid;
@@ -207,7 +227,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
-/* بوصلة القبلة المحسنة */
+/* بوصلة القبلة */
 .compass-wrapper {
     position: relative;
     width: 220px; height: 220px;
@@ -285,13 +305,24 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 <!-- مشغل صوت الأذان التلقائي -->
 <audio id="adhanAudioPlayer" preload="auto" src="https://cdn.islamicfinder.org/adhan/makkah.mp3"></audio>
 
-<!-- شاشة تسجيل الدخول -->
+<!-- شاشة تسجيل الدخول المطورة -->
 <div id="loginOverlay">
     <div class="login-card">
         <h2>أَثَرٌ طَيِّبٌ 🌿</h2>
-        <p>أهلاً بك، يرجى تسجيل اسمك للبدء:</p>
+        <p>اختر طريقة تسجيل الدخول:</p>
+        
+        <!-- زر تسجيل الدخول بواسطة جوجل -->
+        <button class="btn-google" onclick="loginWithGoogle()">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c-.07-.7-.63-1.27-1.345-1.27H12v4.5h6.58c-.28 1.48-1.55 2.58-3.08 2.58-1.86 0-3.38-1.52-3.38-3.38s1.52-3.38 3.38-3.38c.84 0 1.61.31 2.21.83l3.39-3.39c-1.34-1.24-3.13-2-5.6-2-4.97 0-9 4.03-9 9s4.03 9 9 9c4.73 0 8.35-3.33 8.35-8.45 0-.6-.07-1.18-.205-1.73z"/><path fill="#34A853" d="M12 21c2.43 0 4.47-.8 5.96-2.18l-2.87-2.33c-.81.56-1.84.9-3.09.9-2.37 0-4.38-1.6-5.1-3.76H3.85v2.42C5.33 19.04 8.44 21 12 21z"/><path fill="#FBBC05" d="M6.9 13.63c-.18-.54-.28-1.12-.28-1.73s.1-1.19.28-1.73V7.75H3.85C3.3 8.86 3 10.39 3 12s.3 3.14.85 4.25l3.05-2.62z"/><path fill="#EA4335" d="M12 6.75c1.32 0 2.51.45 3.45 1.34l2.58-2.58C16.47 4.04 14.43 3 12 3 8.44 3 5.33 4.96 3.85 7.75l3.05 2.42c.72-2.16 2.73-3.42 5.1-3.42z"/></svg>
+            تسجيل الدخول بواسطة جوجل
+        </button>
+
+        <div class="divider">أو بالاسم وكلمة المرور</div>
+
+        <!-- التسجيل اليدوي بالاسم وكلمة المرور -->
         <input type="text" id="loginName" placeholder="اسم المستخدم">
-        <button class="btn-main" onclick="performLogin()">دخول للتطبيق</button>
+        <input type="password" id="loginPass" placeholder="كلمة المرور">
+        <button class="btn-main" onclick="performLogin()">دخول يدوي</button>
     </div>
 </div>
 
@@ -319,7 +350,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
         <button class="adhan-btn-trigger" onclick="enableAudioAndTest()">🔊 تفعيل الأذان الصوتي</button>
     </div>
 
-    <!-- الشاشة الرئيسية (الأقسام المتبقية مرتبة) -->
+    <!-- الشاشة الرئيسية -->
     <div id="mainHomeSection">
         <div class="section-title">الأقسام الإيمانية</div>
         <div class="grid-container">
@@ -349,7 +380,6 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
             </button>
         </div>
 
-        <!-- أزرار الفوتر -->
         <div class="footer-row">
             <button class="footer-btn" onclick="openSection('settingsSection')">⚙️ الإعدادات</button>
             <button class="footer-btn" onclick="openSection('aboutSection')">ℹ️ عن التطبيق</button>
@@ -376,7 +406,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
         </div>
     </div>
 
-    <!-- 2. بوصلة القبلة المحسنة والشغالة -->
+    <!-- 2. بوصلة القبلة -->
     <div id="qiblaSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
         <h3 style="color: var(--card-green); text-align:center;">🕋 بوصلة القبلة الحية</h3>
@@ -405,25 +435,15 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     <div id="azkarSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
         <h3 style="color: var(--card-green); margin-bottom: 10px;">📿 حصن المسلم والأذكار اليومية</h3>
-        
         <div class="azkar-card">
             <h4>☀️ أذكار الصباح كاملة</h4>
             <p>• "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ..."</p>
             <p>• "آيَةُ الْكُرْسِيِّ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...}"</p>
-            <p>• "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ." (3 مرات)</p>
         </div>
-
         <div class="azkar-card">
             <h4>🌙 أذكار المساء كاملة</h4>
             <p>• "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ..."</p>
             <p>• "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ." (3 مرات)</p>
-            <p>• "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ..." (3 مرات)</p>
-        </div>
-
-        <div class="azkar-card">
-            <h4>🕌 أذكار الصلاة والنوم</h4>
-            <p>• "أَسْتَغْفِرُ اللَّهَ (3 مرات)، اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ..."</p>
-            <p>• "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ..."</p>
         </div>
     </div>
 
@@ -431,20 +451,9 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     <div id="hadithSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
         <h3 style="color: var(--card-green); margin-bottom:10px;">📜 الأحاديث النبوية الشريفة</h3>
-        
         <div class="hadith-card">
             <h4>1. حديث النية والإخلاص</h4>
             <p>«إنَّما الأَعْمالُ بالنِّيَّاتِ، وإنَّما لِكُلِّ امْرِئٍ ما نَوَى...» [متفق عليه]</p>
-        </div>
-
-        <div class="hadith-card">
-            <h4>2. حديث أركان الإسلام</h4>
-            <p>«بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ...» [متفق عليه]</p>
-        </div>
-
-        <div class="hadith-card">
-            <h4>3. حديث حسن الخلق</h4>
-            <p>«ما مِن شيءٍ يوضعُ في الميزانِ أثقلُ من حُسنِ الخُلُقِ» [رواه الترمذي]</p>
         </div>
     </div>
 
@@ -455,11 +464,9 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
         <div style="text-align:center; margin-top:15px; background:var(--card-green-bg); border:1px solid #a7f3d0; padding:20px; border-radius:15px;">
             <p style="font-size:0.95rem; font-weight:bold; color:var(--card-green); margin-bottom:10px;">عدد التسبيحات:</p>
             <div id="tasbihCountText" style="font-size:2.5rem; font-weight:bold; color:var(--card-green); margin-bottom:15px;">0</div>
-            <button style="background:var(--card-green); color:#fff; border:none; width:100px; height:100px; border-radius:50%; font-size:1.5rem; font-weight:bold; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.15);" onclick="countUp()">
-                سبّح
-            </button>
+            <button style="background:var(--card-green); color:#fff; border:none; width:100px; height:100px; border-radius:50%; font-size:1.5rem; font-weight:bold; cursor:pointer;" onclick="countUp()">سبّح</button>
             <div style="margin-top:15px;">
-                <button style="background:none; border:1px solid var(--card-green); color:var(--card-green); padding:4px 12px; border-radius:6px; font-size:0.8rem; cursor:pointer;" onclick="resetTasbih()">إعادة ضبط العداد</button>
+                <button style="background:none; border:1px solid var(--card-green); color:var(--card-green); padding:4px 12px; border-radius:6px; font-size:0.8rem; cursor:pointer;" onclick="resetTasbih()">إعادة ضبط</button>
             </div>
         </div>
     </div>
@@ -504,6 +511,44 @@ function openSection(sectionId) {
 function closeSections() {
     document.querySelectorAll(".content-section").forEach(s => s.classList.remove("active"));
     document.getElementById("mainHomeSection").style.display = "block";
+}
+
+/* دوال تسجيل الدخول (جوجل أو يدوي) */
+function loginWithGoogle() {
+    // محاكاة تسجيل دخول جوجل سريع باسم افتراضي أو موحد
+    let googleUser = "مستخدم جوجل (Google)";
+    localStorage.setItem("athar_logged", "true");
+    localStorage.setItem("athar_username", googleUser);
+    document.getElementById("loginOverlay").style.display = "none";
+    document.getElementById("welcomeUser").innerText = googleUser;
+    document.getElementById("currentLoggedInUser").innerText = googleUser;
+}
+
+function performLogin() {
+    let name = document.getElementById("loginName").value;
+    let pass = document.getElementById("loginPass").value;
+    if(name.trim() !== "" && pass.trim() !== "") {
+        localStorage.setItem("athar_logged", "true");
+        localStorage.setItem("athar_username", name.trim());
+        document.getElementById("loginOverlay").style.display = "none";
+        document.getElementById("welcomeUser").innerText = name.trim();
+        document.getElementById("currentLoggedInUser").innerText = name.trim();
+    } else {
+        alert("يرجى إدخال اسم المستخدم وكلمة المرور بشكل صحيح");
+    }
+}
+
+function logoutUser() {
+    localStorage.removeItem("athar_logged");
+    localStorage.removeItem("athar_username");
+    location.reload();
+}
+
+if(localStorage.getItem("athar_logged") === "true") {
+    document.getElementById("loginOverlay").style.display = "none";
+    let savedName = localStorage.getItem("athar_username") || "مستخدم";
+    document.getElementById("welcomeUser").innerText = savedName;
+    document.getElementById("currentLoggedInUser").innerText = savedName;
 }
 
 let currentPage = 1;
@@ -551,7 +596,6 @@ function goToPageInput() {
     }
 }
 
-/* دوال بوصلة القبلة الفعالة */
 let qiblaBearing = 136.8, userLat = 30.0444, userLng = 31.2357; 
 
 function calculateQiblaAngle(lat, lng) {
@@ -572,16 +616,12 @@ function requestCompassPermission() {
                 if (state === 'granted') {
                     window.addEventListener('deviceorientation', handleOrientation, true);
                     alert("تم تفعيل البوصلة بنجاح!");
-                } else {
-                    alert("تم رفض إذن الوصول لحساسات الموبايل.");
                 }
             }).catch(console.error);
         } else {
             window.addEventListener('deviceorientation', handleOrientation, true);
             alert("تم تفعيل البوصلة الحية بنجاح!");
         }
-    } else {
-        alert("جهازك لا يدعم مستشعرات بوصلة الحركة.");
     }
 }
 
@@ -738,30 +778,6 @@ function changeSurah() {
     let num = select.value;
     if(!num) return;
     audio.src = "https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/" + num.toString().padStart(3, '0') + ".mp3";
-}
-
-function performLogin() {
-    let name = document.getElementById("loginName").value;
-    if(name.trim() !== "") {
-        localStorage.setItem("athar_logged", "true");
-        localStorage.setItem("athar_username", name.trim());
-        document.getElementById("loginOverlay").style.display = "none";
-        document.getElementById("welcomeUser").innerText = name.trim();
-        document.getElementById("currentLoggedInUser").innerText = name.trim();
-    } else { alert("يرجى إدخال الاسم"); }
-}
-
-function logoutUser() {
-    localStorage.removeItem("athar_logged");
-    localStorage.removeItem("athar_username");
-    location.reload();
-}
-
-if(localStorage.getItem("athar_logged") === "true") {
-    document.getElementById("loginOverlay").style.display = "none";
-    let savedName = localStorage.getItem("athar_username") || "مستخدم";
-    document.getElementById("welcomeUser").innerText = savedName;
-    document.getElementById("currentLoggedInUser").innerText = savedName;
 }
 
 loadSurahs();
