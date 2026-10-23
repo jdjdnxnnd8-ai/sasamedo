@@ -38,7 +38,7 @@ body {
     padding-bottom: 90px;
 }
 
-/* شاشة تسجيل الدخول المطورة */
+/* شاشة تسجيل الدخول */
 #loginOverlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -76,7 +76,6 @@ body {
 }
 .btn-main:hover { background: var(--card-green-light); }
 
-/* زر تسجيل جوجل */
 .btn-google {
     width: 100%; padding: 12px; background: #ffffff; color: #334155;
     border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.95em; font-weight: bold;
@@ -218,7 +217,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     display: flex; align-items: center; gap: 5px;
 }
 
-/* المصحف الشريف 3D */
+/* المصحف الشريف */
 .quran-viewer { text-align: center; perspective: 1500px; overflow: hidden; padding: 5px 0; }
 .quran-img {
     width: 100%; max-width: 380px; height: auto; min-height: 420px;
@@ -290,36 +289,30 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 .nav-item.active { color: var(--card-green); font-weight: bold; }
 .nav-item span.icon { font-size: 1.2rem; }
 
-/* الكروت */
+/* الكروت داخل الأذكار والأحاديث */
 .azkar-card, .hadith-card {
     background: #f8fafc; border: 1px solid var(--border-color);
-    padding: 12px; border-radius: 10px; margin-bottom: 10px;
+    padding: 14px; border-radius: 12px; margin-bottom: 12px;
 }
-.azkar-card h4, .hadith-card h4 { color: var(--card-green); margin-bottom: 6px; font-size: 0.98rem; }
-.azkar-card p, .hadith-card p { font-size: 0.9rem; line-height: 1.8; color: #334155; margin-bottom: 4px; }
+.azkar-card h4, .hadith-card h4 { color: var(--card-green); margin-bottom: 8px; font-size: 1.02rem; }
+.azkar-card p, .hadith-card p { font-size: 0.92rem; line-height: 1.8; color: #334155; margin-bottom: 6px; }
 </style>
 </head>
 
 <body>
 
-<!-- مشغل صوت الأذان التلقائي -->
 <audio id="adhanAudioPlayer" preload="auto" src="https://cdn.islamicfinder.org/adhan/makkah.mp3"></audio>
 
-<!-- شاشة تسجيل الدخول المطورة -->
+<!-- شاشة تسجيل الدخول -->
 <div id="loginOverlay">
     <div class="login-card">
         <h2>أَثَرٌ طَيِّبٌ 🌿</h2>
         <p>اختر طريقة تسجيل الدخول:</p>
-        
-        <!-- زر تسجيل الدخول بواسطة جوجل -->
         <button class="btn-google" onclick="loginWithGoogle()">
             <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c-.07-.7-.63-1.27-1.345-1.27H12v4.5h6.58c-.28 1.48-1.55 2.58-3.08 2.58-1.86 0-3.38-1.52-3.38-3.38s1.52-3.38 3.38-3.38c.84 0 1.61.31 2.21.83l3.39-3.39c-1.34-1.24-3.13-2-5.6-2-4.97 0-9 4.03-9 9s4.03 9 9 9c4.73 0 8.35-3.33 8.35-8.45 0-.6-.07-1.18-.205-1.73z"/><path fill="#34A853" d="M12 21c2.43 0 4.47-.8 5.96-2.18l-2.87-2.33c-.81.56-1.84.9-3.09.9-2.37 0-4.38-1.6-5.1-3.76H3.85v2.42C5.33 19.04 8.44 21 12 21z"/><path fill="#FBBC05" d="M6.9 13.63c-.18-.54-.28-1.12-.28-1.73s.1-1.19.28-1.73V7.75H3.85C3.3 8.86 3 10.39 3 12s.3 3.14.85 4.25l3.05-2.62z"/><path fill="#EA4335" d="M12 6.75c1.32 0 2.51.45 3.45 1.34l2.58-2.58C16.47 4.04 14.43 3 12 3 8.44 3 5.33 4.96 3.85 7.75l3.05 2.42c.72-2.16 2.73-3.42 5.1-3.42z"/></svg>
             تسجيل الدخول بواسطة جوجل
         </button>
-
         <div class="divider">أو بالاسم وكلمة المرور</div>
-
-        <!-- التسجيل اليدوي بالاسم وكلمة المرور -->
         <input type="text" id="loginName" placeholder="اسم المستخدم">
         <input type="password" id="loginPass" placeholder="كلمة المرور">
         <button class="btn-main" onclick="performLogin()">دخول يدوي</button>
@@ -364,7 +357,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
             </button>
             <button class="card-btn" onclick="openSection('azkarSection')">
                 <span class="icon">📿</span>
-                <span>الأذكار والحصن</span>
+                <span>الأذكار الشاملة</span>
             </button>
             <button class="card-btn" onclick="openSection('hadithSection')">
                 <span class="icon">📜</span>
@@ -431,29 +424,67 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
         <audio id="audioPlayer" controls style="width:100%; margin-top:12px;"></audio>
     </div>
 
-    <!-- 4. الأذكار -->
+    <!-- 4. الأذكار الشاملة -->
     <div id="azkarSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
-        <h3 style="color: var(--card-green); margin-bottom: 10px;">📿 حصن المسلم والأذكار اليومية</h3>
+        <h3 style="color: var(--card-green); margin-bottom: 10px;">📿 حصن المسلم والأذكار الشاملة</h3>
+        
         <div class="azkar-card">
-            <h4>☀️ أذكار الصباح كاملة</h4>
-            <p>• "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ..."</p>
-            <p>• "آيَةُ الْكُرْسِيِّ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...}"</p>
+            <h4>☀️ أذكار الصباح</h4>
+            <p>• أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهي على كل شيء قدير.</p>
+            <p>• اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.</p>
+            <p>• سيد الاستغفار: «اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت...»</p>
         </div>
+
         <div class="azkar-card">
-            <h4>🌙 أذكار المساء كاملة</h4>
-            <p>• "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ..."</p>
-            <p>• "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ." (3 مرات)</p>
+            <h4>🌙 أذكار المساء</h4>
+            <p>• أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له...</p>
+            <p>• اللهم بك أمسينا وبك نحيا وبك نموت وإليك النشور.</p>
+            <p>• أعوذ بكلمات الله التامات من شر ما خلق (3 مرات).</p>
+        </div>
+
+        <div class="azkar-card">
+            <h4>🕌 أذكار بعد السلام من الصلاة المكتوبة</h4>
+            <p>• أستغفر الله (3 مرات)، اللهم أنت السلام ومنك السلام، تباركت يا ذا الجلال والإكرام.</p>
+            <p>• لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.</p>
+            <p>• قراءة آية الكرسي والمعوذات (الإخلاص، الفلق، الناس) دبر كل صلاة.</p>
+        </div>
+
+        <div class="azkar-card">
+            <h4>🛏️ أذكار النوم والاستيقاظ</h4>
+            <p>• باسمك ربي وضعت جنبي وبك أرفعه، إن أمسكت نفسي فارحمها، وإن أرسلتها فاحفظها بما تحفظ به عبادك الصالحين.</p>
+            <p>• الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور (عند الاستيقاظ).</p>
         </div>
     </div>
 
-    <!-- 5. الأحاديث -->
+    <!-- 5. الأحاديث النبوية الشريفة الشاملة -->
     <div id="hadithSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
-        <h3 style="color: var(--card-green); margin-bottom:10px;">📜 الأحاديث النبوية الشريفة</h3>
+        <h3 style="color: var(--card-green); margin-bottom:10px;">📜 الأحاديث النبوية الشريفة الشاملة</h3>
+        
         <div class="hadith-card">
-            <h4>1. حديث النية والإخلاص</h4>
-            <p>«إنَّما الأَعْمالُ بالنِّيَّاتِ، وإنَّما لِكُلِّ امْرِئٍ ما نَوَى...» [متفق عليه]</p>
+            <h4>1. حديث النية</h4>
+            <p>«إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله...» [رواه البخاري ومسلم]</p>
+        </div>
+
+        <div class="hadith-card">
+            <h4>2. بني الإسلام على خمس</h4>
+            <p>«بني الإسلام على خمس: شهادة أن لا إله إلا الله وأن محمداً رسول الله، وإقام الصلاة، وإيتاء الزكاة، والحج، وصوم رمضان» [متفق عليه]</p>
+        </div>
+
+        <div class="hadith-card">
+            <h4>3. حسن الخلق</h4>
+            <p>«إن من أحبكم إلي وأقربكم مني مجلساً يوم القيامة أحاسنكم أخلاقاً» [رواه الترمذي وصححه الألباني]</p>
+        </div>
+
+        <div class="hadith-card">
+            <h4>4. فضل ذكر الله</h4>
+            <p>«مثل الذي يذكر ربه والذي لا يذكر ربه مثل الحي والميت» [رواه البخاري]</p>
+        </div>
+
+        <div class="hadith-card">
+            <h4>5. الكلمة الطيبة صدقة</h4>
+            <p>«والكلمة الطيبة صدقة، وكل خطوة تمشيها إلى الصلاة صدقة» [رواه مسلم]</p>
         </div>
     </div>
 
@@ -485,7 +516,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     <div id="aboutSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
         <h3 style="color: var(--card-green); text-align:center; font-size:1.3rem; margin-bottom:8px;">عن تطبيق أَثَرٌ طَيِّبٌ 🌿</h3>
-        <p style="text-align:center; font-size:0.9rem; color:var(--text-dark); line-height:1.6;">تطبيق إسلامي شامل صُمم ليكون رفيقك اليومي في العبادة والذكر.</p>
+        <p style="text-align:center; font-size:0.9rem; color:var(--text-dark); line-height:1.6;">تطبيق إسلامي شامل صُمم ليكون رفيقك اليومي في العبادة والذكر، ويضم القرآن الكريم والأذكار والأحاديث ومواقيت الصلاة واتجاه القبلة.</p>
     </div>
 
 </div>
@@ -513,9 +544,7 @@ function closeSections() {
     document.getElementById("mainHomeSection").style.display = "block";
 }
 
-/* دوال تسجيل الدخول (جوجل أو يدوي) */
 function loginWithGoogle() {
-    // محاكاة تسجيل دخول جوجل سريع باسم افتراضي أو موحد
     let googleUser = "مستخدم جوجل (Google)";
     localStorage.setItem("athar_logged", "true");
     localStorage.setItem("athar_username", googleUser);
