@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أَثَرٌ طَيِّبٌ</title>
 <meta name="description" content="تطبيق أَثَرٌ طَيِّبٌ - تطبيق ديني شامل يضم القرآن الكريم والأذكار والأحاديث النبوية وأوقات الصلاة.">
-<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22%D8%A3%D9%8E%D8%AB%D9%8E%D8%B1%D9%8C%20%D8%B7%D9%8E%D9%8A%D9%91%D9%90%D8%A8%D9%8C%22%2C%22short_name%22%3A%22%D8%A3%D8%AB%D8%B1%20%D8%B7%D9%8A%D8%A8%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4fbf7%22%2C%22theme_color%22%3A%22%23115e59%22%7D">
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22%D8%A3%D9%8E%D8%AB%D9%8E%D8%B1%D9%8C%20%D8%B7%D9%8E%D9%8A%D9%91%D9%90%D8%A8%D9%8C%22%2C%22short_name%22%3A%22%D8%A3%D8%AB%D8%B1%20%D8%B7%D9%8A%D8%A8%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f0fdf4%22%2C%22theme_color%22%3A%22%2314532d%22%7D">
 <style>
 :root {
-    --bg-color: #f4fbf7;
-    --card-green: #115e59;
-    --card-green-light: #0d9488;
-    --card-green-bg: #e6f4ed;
-    --accent-gold: #d97706;
+    --bg-color: #f0fdf4;
+    --card-green: #14532d;
+    --card-green-light: #166534;
+    --card-green-bg: #dcfce7;
+    --accent-gold: #b45309;
     --text-dark: #0f172a;
-    --text-muted: #64748b;
+    --text-muted: #475569;
     --card-bg: #ffffff;
-    --border-color: #e2e8f0;
+    --border-color: #bbf7d0;
     --base-font-size: 15px;
 }
 
@@ -37,14 +37,13 @@ body {
     flex-direction: column;
     align-items: center;
     padding-bottom: 90px;
-    transition: font-size 0.2s ease, background-color 0.2s ease;
 }
 
 /* شاشة تسجيل الدخول */
 #loginOverlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(17, 94, 89, 0.95);
+    background: rgba(20, 83, 45, 0.96);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +52,7 @@ body {
 
 .login-card {
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     padding: 30px 25px;
     border-radius: 20px;
     width: 88%;
@@ -79,7 +78,7 @@ body {
 
 header {
     width: 100%;
-    max-width: 420px;
+    max-width: 430px;
     padding: 20px 15px 12px 15px;
     text-align: center;
 }
@@ -92,21 +91,21 @@ header h1 { font-size: 2.1rem; color: var(--card-green); font-weight: bold; marg
 header .sub-title { font-size: 0.95rem; color: var(--card-green-light); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 4px; }
 header p { font-size: 0.82rem; color: var(--text-muted); }
 
-.container { width: 100%; max-width: 420px; padding: 0 12px; }
+.container { width: 100%; max-width: 430px; padding: 0 12px; }
 
 /* شريط أوقات الصلاة */
 .prayer-bar {
     background: var(--card-green);
     color: #ffffff;
     border-radius: 16px;
-    padding: 14px 12px;
+    padding: 15px 12px;
     margin-bottom: 18px;
     text-align: center;
-    box-shadow: 0 4px 14px rgba(17, 94, 89, 0.2);
+    box-shadow: 0 4px 14px rgba(20, 83, 45, 0.25);
 }
 .prayer-title { color: #fef08a; font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
 .prayer-timer { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #ffffff; }
-.prayer-location { font-size: 0.78rem; color: #ccfbf1; margin-bottom: 8px; }
+.prayer-location { font-size: 0.78rem; color: #dcfce7; margin-bottom: 8px; }
 .prayer-times-grid { display: flex; justify-content: space-around; font-size: 0.78rem; color: #f0fdf4; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 8px; flex-wrap: wrap; gap: 4px; }
 .prayer-times-grid div { display: flex; flex-direction: column; align-items: center; }
 .prayer-times-grid span.p-time { color: #fef08a; font-weight: bold; }
@@ -115,10 +114,10 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     background: #ffffff;
     color: var(--card-green);
     border: none;
-    padding: 7px 12px;
+    padding: 8px 12px;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     margin-top: 10px;
     cursor: pointer;
 }
@@ -134,12 +133,11 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 
 .card-btn {
     background: var(--card-bg);
-    border: 1px solid #d1fae5;
+    border: 1px solid var(--border-color);
     color: var(--text-dark);
     border-radius: 12px;
-    padding: 12px 8px;
+    padding: 12px 10px;
     display: flex;
-    flex-direction: flex-row;
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
@@ -149,7 +147,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 }
 .card-btn:active { background: var(--card-green-bg); transform: scale(0.98); }
 .card-btn .icon { 
-    font-size: 1.4rem; 
+    font-size: 1.3rem; 
     background: var(--card-green-bg); 
     padding: 6px; 
     border-radius: 8px;
@@ -169,10 +167,10 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 .footer-btn {
     flex: 1;
     background: var(--card-bg);
-    border: 1px solid #d1fae5;
+    border: 1px solid var(--border-color);
     color: var(--card-green);
     border-radius: 12px;
-    padding: 10px;
+    padding: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,7 +185,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 .content-section {
     display: none;
     background: var(--card-bg);
-    border: 1px solid #d1fae5;
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 20px;
@@ -201,18 +199,15 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     display: flex; align-items: center; gap: 5px;
 }
 
-/* المصحف الشريف 3D */
+/* المصحف الشريف 3D المطور */
 .quran-viewer { text-align: center; perspective: 1500px; overflow: hidden; padding: 5px 0; }
 .quran-img {
-    width: 100%; max-width: 380px; height: auto; min-height: 400px;
-    border-radius: 8px; border: 1px solid #e2e8f0;
+    width: 100%; max-width: 380px; height: auto; min-height: 420px;
+    border-radius: 8px; border: 1px solid #cbd5e1;
     background: #fff; object-fit: contain; display: block; margin: 0 auto 12px;
-    transition: transform 0.5s ease, opacity 0.4s ease;
-    transform-origin: right center;
+    transition: transform 0.4s ease, opacity 0.3s ease;
     box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
-.quran-img.flip-next { transform: rotateY(-110deg) scale(0.92); opacity: 0; }
-.quran-img.flip-prev { transform: rotateY(110deg) scale(0.92); opacity: 0; }
 
 /* بوصلة القبلة */
 .compass-wrapper {
@@ -224,8 +219,8 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f8fafc;
-    box-shadow: 0 0 15px rgba(17, 94, 89, 0.15);
+    background: #ffffff;
+    box-shadow: 0 0 15px rgba(20, 83, 45, 0.15);
 }
 .compass-line {
     width: 4px; height: 170px;
@@ -262,12 +257,12 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     position: fixed;
     bottom: 0; left: 0; width: 100%;
     background: #ffffff;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-around;
     padding: 8px 0;
     z-index: 1000;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
 }
 .nav-item {
     background: none; border: none; color: var(--text-muted);
@@ -279,11 +274,11 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 
 /* الكروت والمعلومات */
 .azkar-card, .hadith-card, .book-card {
-    background: #f8fafc; border: 1px solid #e2e8f0;
+    background: #f8fafc; border: 1px solid var(--border-color);
     padding: 12px; border-radius: 10px; margin-bottom: 10px;
 }
 .azkar-card h4, .hadith-card h4 { color: var(--card-green); margin-bottom: 6px; font-size: 0.98rem; }
-.azkar-card p, .hadith-card p, .book-card p { font-size: 0.9rem; line-height: 1.7; color: #334155; margin-bottom: 4px; }
+.azkar-card p, .hadith-card p, .book-card p { font-size: 0.9rem; line-height: 1.8; color: #334155; margin-bottom: 4px; }
 </style>
 </head>
 
@@ -371,11 +366,17 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
         </div>
     </div>
 
-    <!-- 1. المصحف الشريف -->
+    <!-- 1. المصحف الشريف الشامل -->
     <div id="quranSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
         <h3 style="color: var(--card-green); margin-bottom: 8px;">📖 المصحف الشريف</h3>
-        <p style="font-size: 0.82em; color: var(--text-muted); margin-bottom: 12px;">صفحة رقم: <b id="pageNum">1</b> من 604</p>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <p style="font-size: 0.85em; color: var(--text-muted);">صفحة رقم: <b id="pageNum" style="color:var(--card-green);">1</b> من 604</p>
+            <div>
+                <input type="number" id="pageInput" min="1" max="604" placeholder="الصفحة" style="width:65px; padding:4px; border:1px solid #ccc; border-radius:6px; font-size:0.8rem; text-align:center;">
+                <button onclick="goToPageInput()" style="padding:4px 8px; background:var(--card-green); color:#fff; border:none; border-radius:6px; font-size:0.8rem; cursor:pointer;">انتقال</button>
+            </div>
+        </div>
         <div class="quran-viewer">
             <img id="quranImage" class="quran-img" src="https://android.quran.com/data/width_1024/page001.png" alt="صفحة المصحف" onerror="handleImgError(this)">
         </div>
@@ -410,44 +411,56 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
         <audio id="audioPlayer" controls style="width:100%; margin-top:12px;"></audio>
     </div>
 
-    <!-- 4. موسوعة الأذكار -->
+    <!-- 4. موسوعة الأذكار الضخمة والشاملة -->
     <div id="azkarSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
-        <h3 style="color: var(--card-green); margin-bottom: 10px;">📿 الأذكار اليومية وحصن المسلم</h3>
+        <h3 style="color: var(--card-green); margin-bottom: 10px;">📿 أضخم موسوعة أذكار وحصن المسلم</h3>
         
         <div class="azkar-card">
-            <h4>☀️ أذكار الصباح</h4>
-            <p>• "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ..."</p>
-            <p>• "آيَةُ الْكُرْسِيِّ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...}"</p>
+            <h4>☀️ أذكار الصباح كاملة</h4>
+            <p>• "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ."</p>
+            <p>• "آيَةُ الْكُرْسِيِّ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ...}"</p>
             <p>• "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ."</p>
             <p>• "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ." (3 مرات)</p>
+            <p>• "حَسْبِيَ اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ." (7 مرات)</p>
+            <p>• "اللَّهُمَّ عافِنِي فِي بَدَنِي، اللَّهُمَّ عافِنِي فِي سَمْعِي، اللَّهُمَّ عافِنِي فِي بَصَرِي." (3 مرات)</p>
         </div>
 
         <div class="azkar-card">
-            <h4>🌙 أذكار المساء</h4>
-            <p>• "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ..."</p>
-            <p>• "اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لاَ شَرِيكَ لَكَ..."</p>
+            <h4>🌙 أذكار المساء كاملة</h4>
+            <p>• "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ..."</p>
+            <p>• "اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لاَ شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ."</p>
             <p>• "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ." (3 مرات)</p>
-            <p>• "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ..." (3 مرات)</p>
+            <p>• "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ." (3 مرات)</p>
+            <p>• "رَضِيتُ بِاللَّهِ رَبًّا، وَبِالإِسْلاَمِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا." (3 مرات)</p>
         </div>
 
         <div class="azkar-card">
-            <h4>🕌 أذكار الصلاة</h4>
-            <p>• "أَسْتَغْفِرُ اللَّهَ (3 مرات)، اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ..."</p>
-            <p>• "التَّسْبِيحُ: سُبْحَانَ اللَّهِ (33)، الْحَمْدُ لِلَّهِ (33)، اللَّهُ أَكْبَرُ (33)..."</p>
+            <h4>🕌 أذكار الصلاة والدبر</h4>
+            <p>• "أَسْتَغْفِرُ اللَّهَ (3 مرات)، اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ يَا ذَا الْجَلاَلِ وَالإِكْرَامِ."</p>
+            <p>• "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ."</p>
+            <p>• "التَّسْبِيحُ: سُبْحَانَ اللَّهِ (33)، الْحَمْدُ لِلَّهِ (33)، اللَّهُ أَكْبَرُ (33)، وَتَمَامُ الْمِئَةِ: لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ..."</p>
         </div>
 
         <div class="azkar-card">
-            <h4>🛌 أذكار النوم</h4>
-            <p>• "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ..."</p>
+            <h4>🛌 أذكار النوم والاستيقاظ</h4>
+            <p>• "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، فَإِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا..."</p>
             <p>• "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ."</p>
+            <p>• "اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ." (3 مرات)</p>
+        </div>
+
+        <div class="azkar-card">
+            <h4>🚪 أذكار متنوعة وحصن المسلم</h4>
+            <p>• "بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ." (خُرُوجٌ مِـنَ الْمَنْزِلِ)</p>
+            <p>• "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ." (دُخُولُ الْمَسْجِدِ)</p>
+            <p>• "سَيِّدُ الاِسْتِغْفَارِ: اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ..."</p>
         </div>
     </div>
 
-    <!-- 5. الأحاديث النبوية -->
+    <!-- 5. الأحاديث النبوية الكثيرة -->
     <div id="hadithSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
-        <h3 style="color: var(--card-green); margin-bottom:10px;">📜 الأحاديث النبوية</h3>
+        <h3 style="color: var(--card-green); margin-bottom:10px;">📜 الأحاديث النبوية الشريفة الكثيرة</h3>
         
         <div class="hadith-card">
             <h4>1. حديث النية والإخلاص</h4>
@@ -456,12 +469,27 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
 
         <div class="hadith-card">
             <h4>2. حديث أركان الإسلام</h4>
-            <p>«بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ...» [متفق عليه]</p>
+            <p>«بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلاَةِ...» [متفق عليه]</p>
         </div>
 
         <div class="hadith-card">
             <h4>3. حديث حسن الخلق</h4>
             <p>«ما مِن شيءٍ يوضعُ في الميزانِ أثقلُ من حُسنِ الخُلُقِ» [رواه الترمذي]</p>
+        </div>
+
+        <div class="hadith-card">
+            <h4>4. حديث فضل الذكر</h4>
+            <p>«كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ: سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ» [متفق عليه]</p>
+        </div>
+
+        <div class="hadith-card">
+            <h4>5. حديث صلة الرحم</h4>
+            <p>«مَنْ أَحَبَّ أَنْ يُبْسَطَ لَهُ فِي رِزْقِهِ، وَيُنْسَأَ لَهُ فِي أَثَرِهِ، فَلْيَصِلْ رَحِمَهُ» [متفق عليه]</p>
+        </div>
+
+        <div class="hadith-card">
+            <h4>6. حديث حفظ الله والتوكل عليه</h4>
+            <p>«احْفَظِ اللَّهَ يَحْفَظْكَ، احْفَظِ اللَّهَ تَجِدْهُ تُجَاهَكَ...» [رواه الترمذي]</p>
         </div>
     </div>
 
@@ -492,7 +520,7 @@ header p { font-size: 0.82rem; color: var(--text-muted); }
     <div id="booksSection" class="content-section">
         <button class="back-btn" onclick="closeSections()">⬅ عودة للرئيسية</button>
         <h3 style="color: var(--card-green); margin-bottom:10px;">📚 المكتبة الإسلامية</h3>
-        <div class="book-card"><h4>تفسير ابن كثير</h4><p>تفسير القرآن العظيم.</p></div>
+        <div class="book-card"><h4>تفسير ابن كثير</h4><p>تفسير القرآن العظيم للشيخ ابن كثير.</p></div>
         <div class="book-card"><h4>رياض الصالحين</h4><p>من كلام سيد المرسلين للنووي.</p></div>
     </div>
 
@@ -536,6 +564,52 @@ function openSection(sectionId) {
 function closeSections() {
     document.querySelectorAll(".content-section").forEach(s => s.classList.remove("active"));
     document.getElementById("mainHomeSection").style.display = "block";
+}
+
+let currentPage = 1;
+
+function updateQuranPageUI() {
+    document.getElementById("pageNum").innerText = currentPage;
+    const img = document.getElementById("quranImage");
+    let pageStr = String(currentPage).padStart(3, '0');
+    img.src = `https://android.quran.com/data/width_1024/page${pageStr}.png`;
+}
+
+function handleImgError(image) {
+    let pageStr = String(currentPage).padStart(3, '0');
+    if (!image.dataset.retried) {
+        image.dataset.retried = "true";
+        image.src = `https://quran.ksu.edu.sa/aya/images/1/p${currentPage}.png`;
+    } else {
+        image.src = `https://www.everyayah.com/data/images/img_${pageStr}.png`;
+    }
+}
+
+function nextPage() {
+    if (currentPage < 604) {
+        currentPage++;
+        document.getElementById("quranImage").removeAttribute("data-retried");
+        updateQuranPageUI();
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        document.getElementById("quranImage").removeAttribute("data-retried");
+        updateQuranPageUI();
+    }
+}
+
+function goToPageInput() {
+    let val = parseInt(document.getElementById("pageInput").value);
+    if (val >= 1 && val <= 604) {
+        currentPage = val;
+        document.getElementById("quranImage").removeAttribute("data-retried");
+        updateQuranPageUI();
+    } else {
+        alert("يرجى إدخال رقم صفحة صحيح من 1 إلى 604");
+    }
 }
 
 let userTasbihCount = localStorage.getItem("athar_tasbih_count") ? parseInt(localStorage.getItem("athar_tasbih_count")) : 0;
